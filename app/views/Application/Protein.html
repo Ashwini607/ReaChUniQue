@@ -1,0 +1,6 @@
+#{extends 'main.html' /}
+#{set title:'Protein' /}
+<h1> List of proteins </h1>
+#{list items:myList, as:'proteins'}
+    <li>${proteins}</li>
+#{/list}

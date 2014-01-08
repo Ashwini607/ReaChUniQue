@@ -1,0 +1,6 @@
+#{extends 'main.html' /}
+#{set title:'Target' /}
+<h1> List of targets </h1>
+#{list items:myList, as:'targets'}
+    <li>${targets}</li>
+#{/list}

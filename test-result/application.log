@@ -1,0 +1,5 @@
+23 Dec 2013 11:38:50,535 INFO  ~ Starting /Users/ashwini/play-1.2.7/ReaChUniQue
+23 Dec 2013 11:38:51,291 WARN  ~ You're running Play! in DEV mode
+23 Dec 2013 11:38:51,420 INFO  ~ Listening for HTTP on port 9001 (Waiting a first request to start) ...
+23 Dec 2013 11:39:12,208 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+23 Dec 2013 11:39:13,480 INFO  ~ Application 'ReaChUniQue' is now started !

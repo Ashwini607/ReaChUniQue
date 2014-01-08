@@ -1,0 +1,6 @@
+#{extends 'main.html' /}
+#{set title:'Pathway' /}
+<h1> List of pathways </h1>
+#{list items:myList, as:'pathways'}
+    <li>${pathways}</li>
+#{/list}

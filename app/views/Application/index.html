@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+<center>
+<h1> <span style="color:blue">Rea</span><span style="color:green">Ch</span><span style="color:navy">Uni</span>Que  </h1>
+</center>
+<h2> List of all Compounds </h2>
+
+#{list items:compounds, as:'compound'}
+  <p> Name: ${compound.name}</p>
+  <p> Molecular Formula: ${compound.molecularFormula}</p>
+  <p> Molecular Weight: ${compound.molecularWeight}</p>
+  <p> Target Proteins: ${compound.targets.name}</p>
+  <hr>
+#{/list}
+
+<h2> List of all proteins </h2>
+
+#{list items:proteins, as:'protein'}
+  <p> Name: ${protein.name}</p>
+  <p> Cellular Location: ${protein.cellularLocation}</p>
+  <p> Associated Disease: ${protein.associatedDisease}</p>
+  <p> Protein Sequence: ${protein.proteinSequence}</p>
+  
+  <hr>
+#{/list}
+

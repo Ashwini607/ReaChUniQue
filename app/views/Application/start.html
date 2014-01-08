@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+#{set title:'start' /}
+<h1> Problem-Answer </h1> 
+<a href= "http://localhost:9001/substance"> Substance </a><br>
+<a href= "http://localhost:9001/document"> Document </a><br>
+<a href= "http://localhost:9001/activity"> Activity </a><br>
+<a href= "http://localhost:9001/assay"> Assay </a><br>
+<a href= "http://localhost:9001/target"> Target </a><br>
+<a href= "http://localhost:9001/protein"> Protein </a><br>
+<a href= "http://localhost:9001/pathway"> Pathway </a><br>
+
+
+<form action="@{ChEMBL()}" method="GET">
+  <select name="details" multiple>
+  <option value='?molecule rdfs:subClassOf cco:Substance. ?molecule cco:hasActivity ?activity.'> Substance </option> 
+  <option value="?activity cco:hasAssay ?assay."> Activity</a> </option> 
+  <option value="?assay cco:hasTarget ?target.">Assay</option>   
+  <option value="?target cco:hasTargetComponent ?tarComp. ?tarComp skos:exactMatch ?protein .">Target</option>
+  <option value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation.}"> Protein</option>
+  <option value="SERVICE <http://www.ebi.ac.uk/rdf/services/reactome/sparql> {
+  ?dbXref rdf:type biopax3:Protein .
+  ?dbXref biopax3:memberPhysicalEntity [biopax3:entityReference ?protein  ] .
+  ?pathway biopax3:displayName ?pathwayname .
+  ?pathway biopax3:pathwayComponent ?reaction .
+  ?reaction ?rel ?dbXref.
+  }"> Pathway</option>
+  
+  </select>
+  
+  <select name="details" multiple>
+  <option value="?activity  rdf:type cco:Activity."> Activity </option> 
+  <option value="?activity cco:standardType ?stdType."> StandardType </option> 
+  <option value="?activity cco:standardValue ?stdValue.">StandardValue</option>   
+  <option value="?activity cco:standardRelation ?stdRelation.">Standard Relation</option>
+ <option value="?activity cco:standardUnits ?stdUnit.">Standard Unit</option>
+
+ 
+
+ </select>
+ 
+ <select name="proteinChar" multiple>
+ <option value="?annotation up:disease ?dis. ?dis skos:prefLabel ?disease.">Disease</option>
+ </select>
+ 
+<input type="submit" value="Send"><input type="reset">
+</form>
+
+
+<script type="text/javascript">
+    $(function(){
+        $("option").bind("dblclick", function(){
+        window.location = this.href='http://localhost:9001/activity';
+            
+        });
+    });
+</script> 
+<p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>

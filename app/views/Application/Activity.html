@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'Activity' /}
+<h1> Retrieve activity details </h1>
+<form action="@{Application.ActivityDetails()}" method="GET">
+  <select name="ActivityDetails" multiple>
+  <option value="${myList}"> Activity </option> 
+  <option value="${myList1}"> StandardType </option> 
+  <option value="${myList2}">StandardValue</option>   
+  <option value="${myList3}">Standard Relation</option>
+ <option value="${myList4}">Standard Unit</option>
+
+ </select>
+<input type="submit">
+</form>
+
+<p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+
