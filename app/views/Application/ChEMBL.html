@@ -1,14 +1,225 @@
 #{extends 'main.html' /}
 #{set title:'drugTraget' /}
-<h1> </h1>
 
-${myList} </br>
-${myList1}</br>
-${myList6}</br>
-${myList7}</br>
-${myList8}</br>
-${myList9}</br>
-${myList2}</br>
-${myList3}</br>
-${myList4}</br>
-${myList5}
+<p> Do you want to see the generated SPARQL query</p>
+<a href="http://localhost:9001/SPARQLQuery"> click here</a>
+</br>
+<p>Results</p>
+#{if myList}
+
+ <div class = "container">
+           
+            <div class = "row">
+
+<div class = "col-md-1">
+<b>substance</b></br>
+#{list items:myList, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+</div>
+
+<div class = "col-md-1">
+#{if myList10}
+<b>ChEMBL-id</b></br>
+#{list items:myList10, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+</div>
+
+#{if myList11}
+<b>moleculeDesc</b></br>
+#{list items:myList11, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList12}
+<b>prefLabel</b></br>
+#{list items:myList12, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList13}
+<b>highestDevelopmentPhase</b></br>
+#{list items:myList13, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList14}
+<b>substanceType</b></br>
+#{list items:myList14, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList1}
+<b>activity</b></br>
+#{list items:myList1, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList6}
+<b>stdType</b></br>
+#{list items:myList6, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList7}
+<b>stdValue</b></br>
+#{list items:myList7, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList8}
+<b>stdRelation</b></br>
+#{list items:myList8, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList9}
+<b>stdUnit</b></br>
+#{list items:myList9, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList2}
+<b>assay</b></br>
+#{list items:myList2, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList15}
+<b>assayLabel</b></br>
+#{list items:myList15, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList16}
+<b>assayDesc</b></br>
+#{list items:myList16, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList17}
+<b>assayType</b></br>
+#{list items:myList17, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList18}
+<b><targetConfDesc/b></br>
+#{list items:myList18, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList19}
+<b>targetConfScore</b></br>
+#{list items:myList19, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList20}
+<b>targetRelType</b></br>
+#{list items:myList20, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList21}
+<b>targetRelDesc</b></br>
+#{list items:myList21, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList3}
+<b>target</b></br>
+#{list items:myList3, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList22}
+<b>targetLabel</b></br>
+#{list items:myList22, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList23}
+<b>targetTitle</b></br>
+#{list items:myList23, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList24}
+<b>targetType</b></br>
+#{list items:myList24, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList25}
+<b>organism</b></br>
+#{list items:myList25, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList4}
+
+<b></b>protein</br>#{list items:myList4, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+
+#{if myList5}
+<b>pathwayname</b></br>
+#{list items:myList5, as:'product'}
+    <li>${product}</li>
+#{/list}
+</br>
+#{/if}
+</div>
+</div>

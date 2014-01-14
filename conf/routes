@@ -17,7 +17,7 @@ GET    /protein                                   Application.Protein
 GET    /pathway                                   Application.Pathway
 GET   /ActivityDetails                              Application.ActivityDetail
 GET   /ChEMBLQuery                                Application.ChEMBL
-
+GET   /SPARQLQuery                               Application.SPARQLQuery
 
 
 
