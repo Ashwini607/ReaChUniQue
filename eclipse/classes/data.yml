@@ -1,0 +1,27 @@
+# Application dependencies
+# Test data
+
+Substance(s1):
+  molecularFormula:  C2H6
+  name:              Ethane
+  molecularWeight:   30
+ 
+ 
+Substance(s2):
+  molecularFormula:  C3H8
+  name:              Propane
+  molecularWeight:   44
+           
+Protein(p1):
+  cellularLocation:  Cytoplasm
+  associatedDisease: Cancer
+  proteinSequence:   RRRRRR
+  name:              PGB
+  substance:         s1
+           
+Protein(p2):
+  cellularLocation:  Cell membrane
+  associatedDisease: Asthma
+  proteinSequence:   LLLLL
+  name:              CDK
+  substance:         s1

@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'SPARQLQuery'/}
+
+<p><font size="5" color="green"><b>SPARQL query</b></font></p>
+<hr>
+%{
+name = temp.replace('<', '&lt;');
+name = name.replace("PREFIX", "<br>PREFIX");
+name = name.replace("SELECT", "<br> SELECT");
+name = name.replace("WHERE", "<br> WHERE");
+name = name.replace("LIMIT", "<br> LIMIT");
+name = name.replace(":>", ":<");
+out.print(name); 
+ }%
+ 
+ <hr>
+ 

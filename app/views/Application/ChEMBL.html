@@ -1,225 +1,304 @@
 #{extends 'main.html' /}
 #{set title:'drugTraget' /}
 
-<p> Do you want to see the generated SPARQL query</p>
-<a href="http://localhost:9001/SPARQLQuery"> click here</a>
-</br>
-<p>Results</p>
+<p><font size="5" color="green"><b>Results</b></font></p>
+<div style="padding: 5px; width:99%; overflow:scroll;">
+<table class="table">
+
 #{if myList}
-
- <div class = "container">
-           
-            <div class = "row">
-
-<div class = "col-md-1">
-<b>substance</b></br>
-#{list items:myList, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>Substance</th>
 #{/if}
-</div>
 
-<div class = "col-md-1">
 #{if myList10}
-<b>ChEMBL-id</b></br>
-#{list items:myList10, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>ChEMBL-id</th>
 #{/if}
-</div>
 
 #{if myList11}
-<b>moleculeDesc</b></br>
-#{list items:myList11, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>moleculeDesc</th>
 #{/if}
 
 #{if myList12}
-<b>prefLabel</b></br>
-#{list items:myList12, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>prefLabel</th>
 #{/if}
 
 #{if myList13}
-<b>highestDevelopmentPhase</b></br>
-#{list items:myList13, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>highestDevelopmentPhase</th>
 #{/if}
 
 #{if myList14}
-<b>substanceType</b></br>
-#{list items:myList14, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>substanceType</th>
 #{/if}
 
 #{if myList1}
-<b>activity</b></br>
-#{list items:myList1, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>Activity</th>
 #{/if}
 
 #{if myList6}
-<b>stdType</b></br>
-#{list items:myList6, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>standardType</th>
 #{/if}
 
 #{if myList7}
-<b>stdValue</b></br>
-#{list items:myList7, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>standardValue</th>
 #{/if}
 
 #{if myList8}
-<b>stdRelation</b></br>
-#{list items:myList8, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>standardRelation</th>
 #{/if}
 
 #{if myList9}
-<b>stdUnit</b></br>
-#{list items:myList9, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>standardUnit</th>
 #{/if}
 
 #{if myList2}
-<b>assay</b></br>
-#{list items:myList2, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>Assay</th>
 #{/if}
 
 #{if myList15}
-<b>assayLabel</b></br>
-#{list items:myList15, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>assayLabel</th>
 #{/if}
 
 #{if myList16}
-<b>assayDesc</b></br>
-#{list items:myList16, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>assayDesc</th>
 #{/if}
 
 #{if myList17}
-<b>assayType</b></br>
-#{list items:myList17, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>assayType</th>
 #{/if}
 
 #{if myList18}
-<b><targetConfDesc/b></br>
-#{list items:myList18, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>targetConfDesc</th>
 #{/if}
 
 #{if myList19}
-<b>targetConfScore</b></br>
-#{list items:myList19, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>targetConfScore</th>
 #{/if}
 
 #{if myList20}
-<b>targetRelType</b></br>
-#{list items:myList20, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>targetRelType</th>
 #{/if}
 
 #{if myList21}
-<b>targetRelDesc</b></br>
-#{list items:myList21, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>TargetRelDesc</th>
 #{/if}
 
 #{if myList3}
-<b>target</b></br>
-#{list items:myList3, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>Target</th>
 #{/if}
 
 #{if myList22}
-<b>targetLabel</b></br>
-#{list items:myList22, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>targetLabel</th>
 #{/if}
 
 #{if myList23}
-<b>targetTitle</b></br>
-#{list items:myList23, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>targetTitle</th>
 #{/if}
 
 #{if myList24}
-<b>targetType</b></br>
-#{list items:myList24, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>targetType</th>
 #{/if}
 
 #{if myList25}
-<b>organism</b></br>
-#{list items:myList25, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>organism</th>
 #{/if}
 
 #{if myList4}
+<th>Protein</th>
+#{/if}
 
-<b></b>protein</br>#{list items:myList4, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+#{if myList26}
+<th>disease</th>
 #{/if}
 
 #{if myList5}
-<b>pathwayname</b></br>
-#{list items:myList5, as:'product'}
-    <li>${product}</li>
-#{/list}
-</br>
+<th>Pathway</th>
 #{/if}
+
+
+<tbody>
+%{
+
+List list = Arrays.asList(myList.size(), myList1.size(), myList2.size(), myList3.size(),myList4.size(), myList5.size(), myList6.size(), myList7.size(),myList8.size(), myList9.size(), myList10.size(), myList11.size(),myList12.size(), myList13.size(), myList14.size(), myList15.size(), myList16.size(), myList17.size(), myList18.size(), myList19.size(),myList20.size(), myList21.size(), myList22.size(), myList23.size(), myList24.size(), myList25.size(),myList26.size() )
+max = 0
+for(i=0; i<list.size(); i++){
+ if(max<list[i])
+ max=list[i]
+}
+//out.print(max)
+
+String name="<tr>"
+for(i=0; i< max; i++){
+
+out.print("<tr>")
+
+if(myList.size()>0)
+{out.print("<td>")
+out.println(myList[i])
+out.print("</td>")
+}
+
+if(myList10.size()>0)
+{out.print("<td>")
+out.println(myList10[i])
+out.print("</td>")
+}
+
+if(myList11.size()>0)
+{out.print("<td>")
+out.println(myList11[i])
+out.print("</td>")
+}
+
+if(myList12.size()>0)
+{out.print("<td>")
+out.println(myList12[i])
+out.print("</td>")
+}
+
+if(myList13.size()>0)
+{out.print("<td>")
+out.println(myList13[i])
+out.print("</td>")
+}
+
+if(myList14.size()>0)
+{out.print("<td>")
+out.println(myList14[i])
+out.print("</td>")
+}
+
+if(myList1.size()>0)
+{out.print("<td>")
+out.println(myList1[i])
+out.print("</td>")
+}
+
+if(myList6.size()>0)
+{out.print("<td>")
+out.println(myList6[i])
+out.print("</td>")
+}
+
+if(myList7.size()>0)
+{out.print("<td>")
+out.println(myList7[i])
+out.print("</td>")
+}
+
+if(myList8.size()>0)
+{out.print("<td>")
+out.println(myList8[i])
+out.print("</td>")
+}
+
+if(myList9.size()>0)
+{out.print("<td>")
+out.println(myList9[i])
+out.print("</td>")
+}
+
+if(myList2.size()>0)
+{out.print("<td>")
+out.println(myList2[i])
+out.print("</td>")
+}
+
+if(myList15.size()>0)
+{out.print("<td>")
+out.println(myList15[i])
+out.print("</td>")
+}
+
+if(myList16.size()>0)
+{out.print("<td>")
+out.println(myList16[i])
+out.print("</td>")
+}
+
+if(myList17.size()>0)
+{out.print("<td>")
+out.println(myList17[i])
+out.print("</td>")
+}
+
+if(myList18.size()>0)
+{out.print("<td>")
+out.println(myList18[i])
+out.print("</td>")
+}
+
+if(myList19.size()>0)
+{out.print("<td>")
+out.println(myList19[i])
+out.print("</td>")
+}
+
+if(myList20.size()>0)
+{out.print("<td>")
+out.println(myList20[i])
+out.print("</td>")
+}
+
+if(myList21.size()>0)
+{out.print("<td>")
+out.println(myList21[i])
+out.print("</td>")
+}
+
+if(myList3.size()>0)
+{out.print("<td>")
+out.println(myList3[i])
+out.print("</td>")
+}
+
+if(myList22.size()>0)
+{out.print("<td>")
+out.println(myList22[i])
+out.print("</td>")
+}
+
+if(myList23.size()>0)
+{out.print("<td>")
+out.println(myList23[i])
+out.print("</td>")
+}
+
+if(myList24.size()>0)
+{out.print("<td>")
+out.println(myList24[i])
+out.print("</td>")
+}
+
+if(myList25.size()>0)
+{out.print("<td>")
+out.println(myList25[i])
+out.print("</td>")
+}
+
+if(myList4.size()>0)
+{out.print("<td>")
+out.println(myList4[i])
+out.print("</td>")
+}
+
+if(myList26.size()>0)
+{out.print("<td>")
+out.println(myList26[i])
+out.print("</td>")
+}
+
+if(myList5.size()>0)
+{out.print("<td>")
+out.println(myList5[i])
+out.print("</td>")
+}
+out.print("</tr>")
+}
+}%
+</tbody>
+</table>
 </div>
-</div>
+
+<hr>
+<p> Do you want to see the generated SPARQL query</p>
+<a href="http://localhost:9001/SPARQLQuery"> click here</a>
+<hr>

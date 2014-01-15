@@ -345,7 +345,7 @@ public class Application extends Controller {
 	}
 
 	public static String mixQuery;
-	
+
 	//public static int item2;
 
 
@@ -377,8 +377,9 @@ public class Application extends Controller {
 		List <String> myList23 = new ArrayList();
 		List <String> myList24 = new ArrayList();
 		List <String> myList25 = new ArrayList();
+		List <String> myList26 = new ArrayList();
 
-		String selection = "?molecule ?activity ?stdType ?stdValue ?stdRelation ?stdUnit ?assay ?target ?protein ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?prefLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism\n";
+		String selection = "?molecule ?activity ?stdType ?stdValue ?stdRelation ?stdUnit ?assay ?target ?protein ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?prefLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ?disease";
 		String addSelection =  new String();
 		String[] finalSelection = selection.split(" ");
 		String[] finalDetails = details.split(" ");
@@ -393,10 +394,10 @@ public class Application extends Controller {
 			{finalDetails[item1]=(finalDetails[item1].replaceAll("\\.,", ""));}
 			if(finalDetails[item1].contains(","))
 			{finalDetails[item1]=(finalDetails[item1].replaceAll(",", ""));}
-			
+
 		}		
-		//System.out.println("Hello");
 		
+
 		int item;
 		//item2 = 0;
 		for ( item=0; item<finalSelection.length; item++)
@@ -406,15 +407,15 @@ public class Application extends Controller {
 				if(finalSelection[item].equals(finalDetails[item1]))
 
 				{ addSelection += " "+finalSelection[item];
-					break;
+				break;
 				}
 
 			}
 
 
 		}
-		
-		
+
+
 		System.out.println(addSelection);
 		mixQuery = addFirst + "SELECT "+
 				addSelection+
@@ -423,7 +424,7 @@ public class Application extends Controller {
 				"}\n"+
 				"LIMIT 5";
 		mixQuery = mixQuery.replaceAll(",", "");
-		
+
 		System.out.println(mixQuery);
 		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", mixQuery);
 		ResultSet results = qExe.execSelect();
@@ -437,12 +438,12 @@ public class Application extends Controller {
 			RDFNode b = soln.get("protein") ; 
 			RDFNode c = soln.get("pathwayname") ; 
 
-			RDFNode d = soln.get("stdType ") ; 
+			RDFNode d = soln.get("stdType") ; 
 			RDFNode e = soln.get("stdValue") ; 
 			RDFNode f = soln.get("stdRelation") ; 
 			RDFNode g = soln.get("stdUnit") ;
 
-			RDFNode h = soln.get("ChEMBL-id") ; 
+			RDFNode h = soln.get("ChEMBL_id") ; 
 			RDFNode i = soln.get("moleculeDesc") ; 
 			RDFNode j = soln.get("prefLabel") ; 
 			RDFNode k = soln.get("highestDevelopmentPhase") ; 
@@ -460,6 +461,8 @@ public class Application extends Controller {
 			RDFNode u = soln.get("targetTitle") ; 
 			RDFNode v = soln.get("targetType") ; 
 			RDFNode w = soln.get("organism") ; 
+			
+			RDFNode a1 = soln.get("disease") ; 
 
 
 			if(x != null)
@@ -513,12 +516,14 @@ public class Application extends Controller {
 			if(v != null)
 				myList24.add(v.toString());
 			if(w != null)
-				myList25.add(w.toString());			
+				myList25.add(w.toString());		
+			if(a1 != null)
+				myList26.add(a1.toString());
 
 		}
 		qExe.close();
-		
-		render(myList,myList1,myList2,myList3,myList4,myList5,myList6,myList7,myList8,myList9,myList10,myList11,myList12,myList13,myList14,myList15,myList16,myList17,myList18,myList19,myList20,myList21,myList22,myList23,myList24,myList25,results);
+
+		render(myList,myList1,myList2,myList3,myList4,myList5,myList6,myList7,myList8,myList9,myList10,myList11,myList12,myList13,myList14,myList15,myList16,myList17,myList18,myList19,myList20,myList21,myList22,myList23,myList24,myList25, myList26);
 
 
 	}
