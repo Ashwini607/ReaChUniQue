@@ -349,8 +349,24 @@ public class Application extends Controller {
 	//public static int item2;
 
 
-	public static void ChEMBL(String details){
-
+	public static void ChEMBL(String details, String firstname, String unit, String value){
+		String organism = new String();
+		
+        if (firstname.length()>0){
+        	 organism = "FILTER regex(?organism,'" + firstname + "', 'i')";
+        }
+        
+		String units = new String();
+		
+        if (unit.length()>0){
+       	 units = "FILTER regex(?stdUnit,'" +unit+ "', 'i')";
+        }        
+        
+		String values = new String();		
+        if (value.length()>0){
+       	 values = "FILTER (?stdValue" +value+ ")";
+        } 
+        
 		List <String> myList = new ArrayList(); 
 		List <String> myList1 = new ArrayList();
 		List <String> myList2 = new ArrayList();
@@ -415,15 +431,19 @@ public class Application extends Controller {
 
 		}
 
-
+        details = details.replaceAll(",", "");
 		System.out.println(addSelection);
 		mixQuery = addFirst + "SELECT "+
 				addSelection+
 				" WHERE { \n" +
 				details +
+				organism +	
+				units +
+				values +
+				
 				"}\n"+
 				"LIMIT 5";
-		mixQuery = mixQuery.replaceAll(",", "");
+		//mixQuery = mixQuery.replaceAll(",", "");
 
 		System.out.println(mixQuery);
 		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", mixQuery);

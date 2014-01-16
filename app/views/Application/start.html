@@ -4,7 +4,7 @@
 <p><font size="5" color="green"><b>Solve the problem</b></font></p> 
 <p>Select the options according to your problem</p> 
 
-<form action="@{ChEMBL()}" method="GET" style="width:40000px;">
+<form action="@{ChEMBL()}" method="GET" style="width:200px;">
 
   <select name="details" multiple  style="width: 150px">
   <option value='?molecule rdfs:subClassOf cco:Substance. ?molecule cco:hasActivity ?activity.'> Substance </option> 
@@ -33,7 +33,10 @@
   <option value="?activity cco:standardType ?stdType."> standardType </option> 
   <option value="?activity cco:standardValue ?stdValue.">standardValue</option>   
   <option value="?activity cco:standardRelation ?stdRelation.">standard Relation</option>
- <option value="?activity cco:standardUnits ?stdUnit.">standard Unit</option>
+  <option value="?activity cco:standardUnits ?stdUnit.">standard Unit</option>
+  
+  Standard unit: <input type="text" name="unit" style="width: 150px">
+  Standard value: <input type="text" name="value" style="width: 150px">
  </select>
  
  <select name="details" multiple style="width: 150px">
@@ -49,8 +52,10 @@
   <select name="details" multiple style="width: 150px">
   <option value="?target rdfs:label ?targetLabel.">targetLabel</option>
   <option value="?target dcterms:title ?targetTitle.">targetTitle</option>
-  <option value="?target cco:targetType ?targetType.">targetType</option>
+  <option value="?target cco:targetType ?targetType.">targetType</option> 
   <option value="?target cco:organismName ?organism.">organism</option>
+  Organism name: <input type="text" name="firstname" style="width: 150px">
+  
   </select>
   
  <select name="details" multiple style="width: 150px">
