@@ -19,7 +19,8 @@ GET   /ActivityDetails                              Application.ActivityDetail
 GET   /ChEMBLQuery                                Application.ChEMBL
 GET   /SPARQLQuery                               Application.SPARQLQuery
 
-
+GET /contact                                   Application.contact
+GET /documentation                           Application.documentation
 
 
 # Ignore favicon requests

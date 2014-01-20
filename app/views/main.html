@@ -13,8 +13,18 @@
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <!-- Latest compiled and minified CSS -->
          <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-        
+         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/styles.css'}">
 
+         <style>
+          .red {
+	             color: red;
+	             
+              }
+        .blue {
+	           color: blue;
+	           
+              }
+        </style>
         
     </head>
     <body>
@@ -26,13 +36,15 @@
               <span class = "icon-bar"></span>
               <span class = "icon-bar"></span>
               <span class = "icon-bar"></span>
+              <span class = "icon-bar"></span>
           </button>
           
           <div class = "collapse navbar-collapse navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right">
-             <li><a href="#">Home</a></li>
-             <li><a href = "#">About</a></li>
-             <li><a href = "#">Contact</a></li>
+            <ul class="nav navbar-nav navbar-right">           
+             <li><a href= "http://localhost:9001/start">Home</a></li>
+             <li><a href = "http://localhost:9001/documentation">Documentation</a></li>
+             <li><a href = "#">FAQ</a></li>
+             <li><a href = "http://localhost:9001/contact">Contact</a></li>
             </ul> 
              
         </div>
@@ -47,7 +59,7 @@
       
         <div class="navbar navbar-default navbar-fixed-bottom">
                <div class = "container">
-                      <p class = "navbar-text pull-left">Site Built By Ashwini Kumar</p>
+                      <p class = "navbar-text pull-left">Application Built By Ashwini Kumar</p>
                       <a href = "http://www.ebi.ac.uk/rdf/" class = "navbar-btn btn-danger btn pull-right">Used RDF platform</a>
                </div>
            

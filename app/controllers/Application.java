@@ -395,7 +395,7 @@ public class Application extends Controller {
 		List <String> myList25 = new ArrayList();
 		List <String> myList26 = new ArrayList();
 
-		String selection = "?molecule ?activity ?stdType ?stdValue ?stdRelation ?stdUnit ?assay ?target ?protein ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?prefLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ?disease";
+		String selection = "?molecule ?activity ?stdType ?stdValue ?stdRelation ?stdUnit ?assay ?target ?protein ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?altLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ?disease";
 		String addSelection =  new String();
 		String[] finalSelection = selection.split(" ");
 		String[] finalDetails = details.split(" ");
@@ -554,6 +554,17 @@ public class Application extends Controller {
 		//renderTemplate("Application/SPARQLQuery.html", temp);
 		render(temp);
 	}
+   
+	public static void contact() {
+		render();
+	}
+		
+	public static void documentation() {
+			render();		
+		
+	}
+
+
 }
 
 

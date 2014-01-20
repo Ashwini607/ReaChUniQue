@@ -1,18 +1,18 @@
 #{extends 'main.html' /}
-#{set title:'start' /}
+#{set title:'Home' /}
 
 <p><font size="5" color="green"><b>Solve the problem</b></font></p> 
 <p>Select the options according to your problem</p> 
 
 <form action="@{ChEMBL()}" method="GET" style="width:200px;">
 
-  <select name="details" multiple  style="width: 150px">
+  <select name="details" multiple size=6 style="width: 170px">
   <option value='?molecule rdfs:subClassOf cco:Substance. ?molecule cco:hasActivity ?activity.'> Substance </option> 
-  <option value="?activity cco:hasAssay ?assay. ?activity rdf:type cco:Activity."> Activity</a> </option> 
+  <option value="?activity cco:hasAssay ?assay. ?activity rdf:type cco:Activity."> Activity</option> 
   <option value="?assay cco:hasTarget ?target. ?assay rdf:type cco:Assay.">Assay</option>   
   <option value="?target cco:hasTargetComponent ?tarComp . ?target rdfs:subClassOf cco:Target. ?tarComp skos:exactMatch ?protein .">Target</option>
-  <option value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation.}"> Protein</option>
-  <option value="SERVICE <http://www.ebi.ac.uk/rdf/services/reactome/sparql> {
+  <option class="blue" value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation.}"> Protein</option>
+  <option class="red" value="SERVICE <http://www.ebi.ac.uk/rdf/services/reactome/sparql> {
   ?dbXref rdf:type biopax3:Protein .
   ?dbXref biopax3:memberPhysicalEntity [biopax3:entityReference ?protein  ] .
   ?pathway biopax3:displayName ?pathwayname .
@@ -22,44 +22,44 @@
    </select>
  
  
- <select name="details" multiple style="width: 150px"> 
+ <select name="details" multiple style="width: 170px"> 
  <option value="?molecule rdfs:label ?ChEMBL_id.">ChEMBL-id</option>
- <option value="?molecule skos:prefLabel ?prefLabel.">prefLabe</option>
- <option value="?molecule cco:highestDevelopmentPhase ?highestDevelopmentPhase.">highestDevelopmentPhase</option>
- <option value="?molecule cco:substanceType ?substanceType.">substanceType</option>
+ <option value="?molecule skos:altLabel ?altLabel.">altLabel</option>
+ <option value="?molecule cco:highestDevelopmentPhase ?highestDevelopmentPhase.">Highest Development Phase</option>
+ <option value="?molecule cco:substanceType ?substanceType.">Substance Type</option>
  </select>
   
-  <select name="details" multiple style="width: 150px">
-  <option value="?activity cco:standardType ?stdType."> standardType </option> 
-  <option value="?activity cco:standardValue ?stdValue.">standardValue</option>   
-  <option value="?activity cco:standardRelation ?stdRelation.">standard Relation</option>
-  <option value="?activity cco:standardUnits ?stdUnit.">standard Unit</option>
+  <select name="details" multiple style="width: 170px">
+  <option value="?activity cco:standardType ?stdType."> Standard Type </option> 
+  <option value="?activity cco:standardValue ?stdValue.">Standard Value</option>   
+  <option value="?activity cco:standardRelation ?stdRelation.">Standard Relation</option>
+  <option value="?activity cco:standardUnits ?stdUnit.">Standard Unit</option>
   
-  Standard unit: <input type="text" name="unit" style="width: 150px">
-  Standard value: <input type="text" name="value" style="width: 150px">
+  Standard unit: <input type="text" name="unit" style="width: 170px">
+  Standard value: <input type="text" name="value" style="width: 170px">
  </select>
  
- <select name="details" multiple style="width: 150px">
- <option value="?assay rdfs:label ?assayLabel.">assayLabel</option> 
- <option value="?assay dcterms:description ?assayDesc.">assayDesc</option>
- <option value="?assay cco:assayType ?assayType.">assayType</option>
+ <select name="details" multiple style="width: 170px">
+ <option value="?assay rdfs:label ?assayLabel.">Assay Label</option> 
+ <option value="?assay dcterms:description ?assayDesc.">Assay Desc</option>
+ <option value="?assay cco:assayType ?assayType.">Assay Type</option>
  <option value="?assay cco:targetConfDesc ?targetConfDesc.">targetConfDesc</option>
  <option value="?assay cco:targetConfScore ?targetConfScore.">targetConfScore</option>
  <option value="?assay cco:targetRelType ?targetRelType.">targetRelType</option>
  <option value="?assay cco:targetRelDesc ?targetRelDesc.">targetRelDesc</option>
  </select>
  
-  <select name="details" multiple style="width: 150px">
-  <option value="?target rdfs:label ?targetLabel.">targetLabel</option>
-  <option value="?target dcterms:title ?targetTitle.">targetTitle</option>
-  <option value="?target cco:targetType ?targetType.">targetType</option> 
-  <option value="?target cco:organismName ?organism.">organism</option>
-  Organism name: <input type="text" name="firstname" style="width: 150px">
+  <select name="details" multiple style="width: 170px">
+  <option value="?target rdfs:label ?targetLabel.">Target Label</option>
+  <option value="?target dcterms:title ?targetTitle.">Target Title</option>
+  <option value="?target cco:targetType ?targetType.">Target Type</option> 
+  <option value="?target cco:organismName ?organism.">Organism</option>
+  Organism name: <input type="text" name="firstname" style="width: 170px">
   
   </select>
   
- <select name="details" multiple style="width: 150px">
- <option value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation. ?annotation up:disease ?dis. ?dis skos:prefLabel ?disease. }">Disease</option>
+ <select name="details" multiple style="width: 170px">
+ <option class="blue" value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation. ?annotation up:disease ?dis. ?dis skos:prefLabel ?disease. }">Disease</option>
  </select>
  
 <input type="submit" value="Send"><input type="reset">

@@ -1,0 +1,17 @@
+
+body {
+ margin-bottom: 80px;
+ }
+ 
+.page-header {
+margin-top: 0;
+}
+
+.panel-body {
+padding-top:0;
+}
+
+.featuredImg {
+margin-bottom: 15px;
+width:100%;
+}
