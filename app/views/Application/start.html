@@ -1,9 +1,13 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<p><font size="5" color="green"><b>Solve the problem</b></font></p> 
-<p>Select the options according to your problem</p> 
+<p><font size="5" color="green"><b>Select the options and then Submit according to your query</b></font></p> 
+<br>
+If you do not know how to operate then go through the Documentation page.
+<hr>
+<button type="button" >Select options from form</button>
 
+<hr>
 <form action="@{ChEMBL()}" method="GET" style="width:200px;">
 
   <select name="details" multiple size=6 style="width: 170px">
@@ -62,7 +66,7 @@
  <option class="blue" value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation. ?annotation up:disease ?dis. ?dis skos:prefLabel ?disease. }">Disease</option>
  </select>
  
-<input type="submit" value="Send"><input type="reset">
+<input type="submit" style="background-color:#33FF99" value="Submit"><input type="reset" style="background-color:#FF6633">
 
 </form>
 

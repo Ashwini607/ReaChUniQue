@@ -442,38 +442,55 @@ public class Application extends Controller {
 				values +
 				
 				"}\n"+
-				"LIMIT 5";
+				"LIMIT 11";
 		//mixQuery = mixQuery.replaceAll(",", "");
 
 		System.out.println(mixQuery);
 		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", mixQuery);
 		ResultSet results = qExe.execSelect();
+		//String k = new String();
+		
 		for ( ; results.hasNext() ; )
 		{
+			
 			QuerySolution soln = results.nextSolution() ;
+			//soln.getLiteral("stdValue").getLexicalForm(); 
 			RDFNode x = soln.get("molecule") ; 
 			RDFNode y = soln.get("activity") ; 
 			RDFNode z = soln.get("assay") ; 
 			RDFNode a = soln.get("target") ; 
 			RDFNode b = soln.get("protein") ; 
-			RDFNode c = soln.get("pathwayname") ; 
+			RDFNode c1 = soln.get("pathwayname") ; 
+			if(c1 != null){
+				String c = soln.getLiteral("pathwayname").getLexicalForm();
+				myList5.add(c.toString());}
+			
 
 			RDFNode d = soln.get("stdType") ; 
-			RDFNode e = soln.get("stdValue") ; 
+			RDFNode e1 = soln.get("stdValue") ;
+			if(e1!=null){
+			       String e = soln.getLiteral("stdValue").getLexicalForm();
+			       myList7.add(e.toString());}
 			RDFNode f = soln.get("stdRelation") ; 
 			RDFNode g = soln.get("stdUnit") ;
 
 			RDFNode h = soln.get("ChEMBL_id") ; 
 			RDFNode i = soln.get("moleculeDesc") ; 
 			RDFNode j = soln.get("prefLabel") ; 
-			RDFNode k = soln.get("highestDevelopmentPhase") ; 
+			RDFNode k1 = soln.get("highestDevelopmentPhase") ;
+			if(k1 != null){
+				String k = soln.getLiteral("highestDevelopmentPhase").getLexicalForm();
+				myList13.add(k.toString());}
 			RDFNode l = soln.get("substanceType") ; 
 
 			RDFNode m = soln.get("assayLabel") ; 
 			RDFNode n = soln.get("assayDesc") ;
 			RDFNode o = soln.get("assayType") ; 
 			RDFNode p = soln.get("targetConfDesc") ; 
-			RDFNode q = soln.get("targetConfScore") ; 
+			RDFNode q1 = soln.get("targetConfScore") ; 
+			if(q1 != null){
+				String q = soln.getLiteral("targetConfScore").getLexicalForm();
+				myList19.add(q.toString());}
 			RDFNode r = soln.get("targetRelType") ; 
 			RDFNode s = soln.get("targetRelDesc") ; 
 
@@ -495,12 +512,12 @@ public class Application extends Controller {
 				myList3.add(a.toString());
 			if(b != null)
 				myList4.add(b.toString());
-			if(c != null)
-				myList5.add(c.toString());
+		//	if(c != null)
+		//		myList5.add(c.toString());
 			if(d != null)
 				myList6.add(d.toString());
-			if(e != null)
-				myList7.add(e.toString());
+		//	if(e != null)
+		//		myList7.add(e.toString());
 			if(f != null)
 				myList8.add(f.toString());
 			if(g != null)
@@ -511,8 +528,8 @@ public class Application extends Controller {
 				myList11.add(i.toString());
 			if(j != null)
 				myList12.add(j.toString());
-			if(k != null)
-				myList13.add(k.toString());
+		//	if(k != null)
+		//		myList13.add(k.toString());
 			if(l != null)
 				myList14.add(l.toString());
 			if(m != null)
@@ -523,8 +540,8 @@ public class Application extends Controller {
 				myList17.add(o.toString());
 			if(p != null)
 				myList18.add(p.toString());
-			if(q != null)
-				myList19.add(q.toString());
+		//	if(q != null)
+		//		myList19.add(q.toString());
 			if(r != null)
 				myList20.add(r.toString());
 			if(s != null)
