@@ -394,8 +394,11 @@ public class Application extends Controller {
 		List <String> myList24 = new ArrayList();
 		List <String> myList25 = new ArrayList();
 		List <String> myList26 = new ArrayList();
-
-		String selection = "?molecule ?activity ?stdType ?stdValue ?stdRelation ?stdUnit ?assay ?target ?protein ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?altLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ?disease";
+		List <String> myList27 = new ArrayList();
+		List <String> myList28 = new ArrayList();
+		List <String> myList29 = new ArrayList();
+		
+		String selection = "?molecule ?document ?journalName ?date ?activity ?stdType ?stdValue ?stdRelation ?stdUnit ?assay ?target ?protein ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?altLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ?disease";
 		String addSelection =  new String();
 		String[] finalSelection = selection.split(" ");
 		String[] finalDetails = details.split(" ");
@@ -500,8 +503,21 @@ public class Application extends Controller {
 			RDFNode w = soln.get("organism") ; 
 			
 			RDFNode a1 = soln.get("disease") ; 
-
-
+			RDFNode aa = soln.get("document") ; 
+			if(aa != null)
+               myList27.add(aa.toString());
+			
+			RDFNode aa1 = soln.get("journalName") ; 
+			if(aa1 != null)
+               myList28.add(aa1.toString());
+			
+			RDFNode aa21 = soln.get("date") ; 
+			if(aa21!=null){
+			       String aa2 = soln.getLiteral("date").getLexicalForm();
+			       myList29.add(aa2.toString());}
+               
+			
+			
 			if(x != null)
 				myList.add(x.toString());
 			if (y!= null)
@@ -560,7 +576,7 @@ public class Application extends Controller {
 		}
 		qExe.close();
 
-		render(myList,myList1,myList2,myList3,myList4,myList5,myList6,myList7,myList8,myList9,myList10,myList11,myList12,myList13,myList14,myList15,myList16,myList17,myList18,myList19,myList20,myList21,myList22,myList23,myList24,myList25, myList26);
+		render(myList,myList1,myList2,myList3,myList4,myList5,myList6,myList7,myList8,myList9,myList10,myList11,myList12,myList13,myList14,myList15,myList16,myList17,myList18,myList19,myList20,myList21,myList22,myList23,myList24,myList25, myList26, myList27, myList28, myList29);
 
 
 	}
@@ -580,6 +596,10 @@ public class Application extends Controller {
 			render();		
 		
 	}
+	public static void visualisation() {
+		render();		
+	
+}
 
 
 }

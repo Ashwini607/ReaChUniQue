@@ -116,7 +116,7 @@ If you are interested in finding the ChEMBl molecules targeting Mycobacterium ha
 
 <b>Way to solve it:</b> You would have to select the following options Substance, Activity, Assay, Target, ChEMBL-id, Standard Value, Standard Unit and Organism and then in text box below Standard Unit write 'nm', below Standard value '<10' and below Organism 'mycobacterium'. 
 
-<img src="@{'/public/images/mycoBacFig1.png'}", alt = "Smiley face">
+<img src="@{'/public/images/mycoBacFig2.png'}", alt = "Smiley face">
 </br>
 Slected options have been shown in gray background and values written in text boxes. Text box is a part of filtering so will extract the information related to all the matching text. If you are accurate with your search with case sensitive then you can remove the variable name from the generated SPARQL query and replace with the value. For example here we have search the unit is nm so it will extract the unit containing nm like nM, nmol/min etc. If you are interested in just nM then remove the variable ?stdUnit with 'nM' (?activity cco:standardUnits 'nM'.).      
 <br>

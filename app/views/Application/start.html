@@ -3,14 +3,14 @@
 
 <p><font size="5" color="green"><b>Select the options and then Submit according to your query</b></font></p> 
 <br>
-If you do not know how to operate then go through the Documentation page.
-<hr>
 <button type="button" >Select options from form</button>
-
+<br>
+<p>If you do not know how to operate then go through the Documentation page. if you want to see the connectivity <a href="http://localhost:9001/visualisation"> click here</a></p>
 <hr>
 <form action="@{ChEMBL()}" method="GET" style="width:200px;">
 
-  <select name="details" multiple size=6 style="width: 170px">
+  <select name="details" multiple size=7 style="width: 170px">
+  <option value='?molecule cco:hasDocument ?document. ?document rdf:type cco:Document.'> Document</option> 
   <option value='?molecule rdfs:subClassOf cco:Substance. ?molecule cco:hasActivity ?activity.'> Substance </option> 
   <option value="?activity cco:hasAssay ?assay. ?activity rdf:type cco:Activity."> Activity</option> 
   <option value="?assay cco:hasTarget ?target. ?assay rdf:type cco:Assay.">Assay</option>   
@@ -25,7 +25,11 @@ If you do not know how to operate then go through the Documentation page.
   }"> Pathway</option>
    </select>
  
- 
+ <select name="details" multiple style="width: 170px"> 
+ <option value="?document cco:hasJournal ?journal. ?journal dcterms:title ?journalName.">Journal Name</option>
+ <option value="?document dcterms:date ?date.">Published Date</option>
+ </select>
+  
  <select name="details" multiple style="width: 170px"> 
  <option value="?molecule rdfs:label ?ChEMBL_id.">ChEMBL-id</option>
  <option value="?molecule skos:altLabel ?altLabel.">altLabel</option>
