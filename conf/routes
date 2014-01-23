@@ -4,24 +4,13 @@
 
 # Home page
 GET     /                                       Application.index
-GET     /sparql                                 Application.sparql
-GET     /test/{id}                                 Application.test
-GET     /disease/{id}                                Application.disease
-GET    /start                                    Application.start
-GET    /substance                                    Application.Substance
-GET    /document                                   Application.Document
-GET    /activity                                   Application.Activity
-GET    /assay                                   Application.Assay
-GET    /target                                   Application.Target
-GET    /protein                                   Application.Protein
-GET    /pathway                                   Application.Pathway
-GET   /ActivityDetails                              Application.ActivityDetail
-GET   /ChEMBLQuery                                Application.ChEMBL
-GET   /SPARQLQuery                               Application.SPARQLQuery
 
-GET /contact                                   Application.contact
-GET /documentation                           Application.documentation
-GET /visualisation                           Application.visualisation
+GET    /start                                   Application.start
+GET   /ChEMBLQuery                              Application.ChEMBL
+GET   /SPARQLQuery                              Application.SPARQLQuery
+GET /contact                                    Application.contact
+GET /documentation                              Application.documentation
+GET /visualisation                              Application.visualisation
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

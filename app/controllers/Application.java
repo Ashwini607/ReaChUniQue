@@ -11,7 +11,7 @@ import play.mvc.*;
 
 import java.util.*;
 
-import javax.media.j3d.View;
+//import javax.media.j3d.View;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 
@@ -33,121 +33,10 @@ import com.hp.hpl.jena.query.*;
 public class Application extends Controller {
 
 	public static void index() {
-		List<Protein> proteins = Protein.findAll();
-		List<Substance> compounds = Substance.findAll();
-		Substance s1 = new Substance("C2H6",30, "Ethane");
-		Protein p1 = new Protein("Cytoplasm", "Cancer", "RRRRRR", "PGB", s1);
-		Protein p2 = new Protein("Cytoplasm", "Cancer", "RRRRR", "PGV", s1);
-		int y = p1.getSimilarity(p2);
-		render(proteins, compounds,y);
-	}
-	//Pseudo-code:
-	//Print a message saying the query is being executed
-	//TODO do a SPARQL query
-	//Need a way to run a SPARQL query (jena library)
-	//Set the Jena library deps
-	//See the class for SPARQL query
-	//Print the results in console
-	//Try to think how it can be integrated with the view
-	//Which end-point are we going to use?
-	//Need to have a "debug" SPARQL query
-	//Print a message saying the query is done
-
-	public static void sparql() {
-		List <String> myList = new ArrayList();
-		String queryString = 
-				"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n " +
-						"PREFIX skos: <http://www.w3.org/2004/02/skos/core#> \n" +
-						"SELECT ?tradeName\n" +
-						"	WHERE { \n" +
-						"<http://rdf.ebi.ac.uk/resource/chembl/molecule/CHEMBL192> skos:altLabel ?tradeName.\n" + 
-						"}\n";
-
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", queryString);
-		ResultSet results = qExe.execSelect();
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("tradeName") ;       // Get a result variable by name.
-			System.out.println(x);
-			//Resource r = soln.getResource("VarR") ; // Get a result variable - must be a resource
-			//Literal l = soln.getLiteral("VarL") ;   // Get a result variable - must be a literal
-			myList.add(x.toString() + "\n");			
-		}
-		//ResultSetFormatter.out(System.out, results) ;
-		qExe.close();
-		render(myList);
+		
+		start();
 	}
 
-	public static void test(String id){
-		String ChEMBLQuery = 
-				"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n " +
-						"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-						"PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-						"SELECT ?molfor\n" +
-						//"CONSTRUCT {<http://rdf.ebi.ac.uk/resource/chembl/molecule/" + id + "#full_molformula> rdfs:label ?molfor.} \n" +
-						"WHERE {\n" +
-						"<http://rdf.ebi.ac.uk/resource/chembl/molecule/" + id + "#full_molformula> rdfs:label ?molfor.\n" +
-						"}\n";
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", ChEMBLQuery);
-
-		ResultSet results = qExe.execSelect();
-
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("molfor") ;       // Get a result variable by name.
-			System.out.println(x + "\n");
-			//Resource r = soln.getResource("VarR") ; // Get a result variable - must be a resource
-			//	Literal l = soln.getLiteral("VarL") ;   // Get a result variable - must be a literal
-			render(x);
-
-		}
-		//ResultSetFormatter.out(System.out, results) ;	 
-		qExe.close() ;
-		//Logger.info(results.toString());
-		//render(results);
-	} 
-
-	public static void disease(String id){
-		List <String> myList = new ArrayList();
-		List <String> myList1 = new ArrayList();
-		List <String> myList2 = new ArrayList();
-		String diseaseSearch = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n" +
-				"PREFIX owl: <http://www.w3.org/2002/07/owl#> \n" +
-				"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> \n" +
-				"PREFIX skos: <http://www.w3.org/2004/02/skos/core#> \n" +
-				"PREFIX up:<http://purl.uniprot.org/core/>\n " + 
-
-			"SELECT ?protein  ?disease ?aa \n" +
-			"WHERE { \n" +
-			"  SERVICE <http://beta.sparql.uniprot.org/sparql> { \n" +
-			"  ?protein a up:Protein.\n " +
-			"  ?protein up:sequence ?seq. \n" +
-			"  ?seq rdf:value ?aa.\n " +
-			"  ?protein up:annotation ?annotation. \n" +
-			"  ?annotation up:disease ?dis.\n" +
-			"  ?dis skos:prefLabel ?disease . \n" + 
-			"  FILTER regex(?disease,'" + id + "', 'i')" +
-			"}\n" +
-			"}\n"+
-			"LIMIT 5";
-		Query query = QueryFactory.create(diseaseSearch);
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", query);
-		ResultSet results = qExe.execSelect();
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("protein") ;       // Get a result variable by name.
-			RDFNode y = soln.get("disease") ; 
-			RDFNode z = soln.get("aa") ; 
-			myList.add(x.toString() +"\t"+ y.toString() +"\t"+ z.toString());
-		}
-		qExe.close();
-		render(myList, myList1, myList2 );
-
-	}
 
 	public static void start(){
 		render();
@@ -166,207 +55,27 @@ public class Application extends Controller {
 			"PREFIX up:<http://purl.uniprot.org/core/> \n";	
 
 
-	public static String Substance(){
-		List <String> myList = new ArrayList(); 
-		String substance = addFirst + 
-				"SELECT ?drugName \n" +
-				"WHERE { \n" +
-				"?drug rdfs:subClassOf cco:Substance. \n"+
-				"?drug rdfs:label ?drugName.\n" +
-				"}\n"+
-				"LIMIT 5";
-		Query query = QueryFactory.create(substance);
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", query);
-		ResultSet results = qExe.execSelect();
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("drugName") ;     
-			myList.add(x.toString());
-		}
-		//ResultSetFormatter.out(System.out, results) ;
-		qExe.close();
-		render(myList);
-		return(substance);
-	}
-
-	public static void Document(){
-		List <String> myList = new ArrayList(); 
-		String query = addFirst + 
-				"SELECT ?document \n" +
-				"WHERE { \n" +
-				"?document  rdf:type cco:Document. \n"+
-				"}\n"+
-				"LIMIT 5";
-
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", query);
-		ResultSet results = qExe.execSelect();
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("document") ;     
-			myList.add(x.toString());
-		}
-		qExe.close();
-		render(myList);
-	}	
-	public static String Activity(){
-		List <String> myList = new ArrayList(); 
-		List <String> myList1 = new ArrayList();
-		List <String> myList2 = new ArrayList();
-		List <String> myList3 = new ArrayList();
-		List <String> myList4 = new ArrayList();
-		String query = addFirst + 
-				"SELECT ?activity ?stdType ?stdValue ?stdRelation ?stdUnit\n" +
-				"WHERE { \n" +
-				"?activity  rdf:type cco:Activity. \n"+
-				"?activity cco:standardType ?stdType.\n"+
-				"?activity cco:standardValue ?stdValue.\n"+
-				"?activity cco:standardRelation ?stdRelation.\n"+
-				"?activity cco:standardUnits ?stdUnit.\n"+
-				"}\n"+
-				"LIMIT 5";
-
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", query);
-		ResultSet results = qExe.execSelect();
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("activity") ; 
-			RDFNode y = soln.get("stdType") ; 
-			RDFNode z = soln.get("stdValue") ; 
-			RDFNode a = soln.get("stdRelation") ; 
-			RDFNode b = soln.get("stdUnit") ; 
-			myList.add(x.toString());
-			myList1.add(y.toString());
-			myList2.add(z.toString());
-			myList3.add(a.toString());
-			myList4.add(b.toString());
-		}
-		qExe.close();
-		render(myList,myList1,myList2,myList3,myList4 );
-		return(query);
-	}			
-
-	public static void Assay(){
-		List <String> myList = new ArrayList(); 
-		String query = addFirst + 
-				"SELECT ?assay \n" +
-				"WHERE { \n" +
-				"?assay  rdf:type cco:Assay. \n"+
-				"}\n"+
-				"LIMIT 5";
-
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", query);
-		ResultSet results = qExe.execSelect();
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("assay") ;     
-			myList.add(x.toString());
-		}
-		qExe.close();
-		render(myList);
-	}			
-
-	public static void Target(){
-		List <String> myList = new ArrayList(); 
-		String query = addFirst + 
-				"SELECT ?target \n" +
-				"WHERE { \n" +
-				"?target  rdfs:subClassOf cco:Target. \n"+
-				"}\n"+
-				"LIMIT 5";
-
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", query);
-		ResultSet results = qExe.execSelect();
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("target") ;     
-			myList.add(x.toString());
-		}
-		qExe.close();
-		render(myList);
-	}			
-
-	public static void Protein(){
-		List <String> myList = new ArrayList(); 
-		String query = addFirst + 
-				"SELECT ?protein \n" +
-				"WHERE { \n" +
-				"SERVICE <http://beta.sparql.uniprot.org/sparql> { \n" +
-				"?protein a up:Protein.\n" +
-				"}\n"+
-				"}\n"+
-				"LIMIT 5";
-
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", query);
-		ResultSet results = qExe.execSelect();
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("protein") ;     
-			myList.add(x.toString());
-		}
-		qExe.close();
-		render(myList);
-	}			
-
-	public static void Pathway(){
-		List <String> myList = new ArrayList(); 
-		String query = addFirst + 
-				"SELECT ?pathwayname \n" +
-				"WHERE { \n" +
-				"SERVICE <http://www.ebi.ac.uk/rdf/services/reactome/sparql> { \n" +
-				"?protein rdf:type biopax3:Protein .\n" +
-				"?protein biopax3:memberPhysicalEntity [biopax3:entityReference ?dbXref ] .\n" +
-				"?pathway biopax3:displayName ?pathwayname .\n" +
-				"?pathway biopax3:pathwayComponent ?reaction .\n" +
-				"?reaction ?rel ?protein\n" +
-				"}\n"+
-				"}\n"+
-				"LIMIT 5";
-
-		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", query);
-		ResultSet results = qExe.execSelect();
-		for ( ; results.hasNext() ; )
-		{
-			QuerySolution soln = results.nextSolution() ;
-			RDFNode x = soln.get("pathwayname") ;     
-			myList.add(x.toString());
-		}
-		qExe.close();
-		render(myList);
-	}			
-	public static void ActivityDetails(List<String> ActivityDetails ){
-
-		render(ActivityDetails);
-	}
-
 	public static String mixQuery;
-
-	//public static int item2;
 
 
 	public static void ChEMBL(String details, String firstname, String unit, String value){
 		String organism = new String();
-		
-        if (firstname.length()>0){
-        	 organism = "FILTER regex(?organism,'" + firstname + "', 'i')";
-        }
-        
+
+		if (firstname.length()>0){
+			organism = "FILTER regex(?organism,'" + firstname + "', 'i')";
+		}
+
 		String units = new String();
-		
-        if (unit.length()>0){
-       	 units = "FILTER regex(?stdUnit,'" +unit+ "', 'i')";
-        }        
-        
+
+		if (unit.length()>0){
+			units = "FILTER regex(?stdUnit,'" +unit+ "', 'i')";
+		}        
+
 		String values = new String();		
-        if (value.length()>0){
-       	 values = "FILTER (?stdValue" +value+ ")";
-        } 
-        
+		if (value.length()>0){
+			values = "FILTER (?stdValue" +value+ ")";
+		} 
+
 		List <String> myList = new ArrayList(); 
 		List <String> myList1 = new ArrayList();
 		List <String> myList2 = new ArrayList();
@@ -397,7 +106,7 @@ public class Application extends Controller {
 		List <String> myList27 = new ArrayList();
 		List <String> myList28 = new ArrayList();
 		List <String> myList29 = new ArrayList();
-		
+
 		String selection = "?molecule ?document ?journalName ?date ?activity ?stdType ?stdValue ?stdRelation ?stdUnit ?assay ?target ?protein ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?altLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ?disease";
 		String addSelection =  new String();
 		String[] finalSelection = selection.split(" ");
@@ -415,7 +124,7 @@ public class Application extends Controller {
 			{finalDetails[item1]=(finalDetails[item1].replaceAll(",", ""));}
 
 		}		
-		
+
 
 		int item;
 		//item2 = 0;
@@ -434,7 +143,7 @@ public class Application extends Controller {
 
 		}
 
-        details = details.replaceAll(",", "");
+		details = details.replaceAll(",", "");
 		System.out.println(addSelection);
 		mixQuery = addFirst + "SELECT "+
 				addSelection+
@@ -443,7 +152,7 @@ public class Application extends Controller {
 				organism +	
 				units +
 				values +
-				
+
 				"}\n"+
 				"LIMIT 11";
 		//mixQuery = mixQuery.replaceAll(",", "");
@@ -452,10 +161,10 @@ public class Application extends Controller {
 		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", mixQuery);
 		ResultSet results = qExe.execSelect();
 		//String k = new String();
-		
+
 		for ( ; results.hasNext() ; )
 		{
-			
+
 			QuerySolution soln = results.nextSolution() ;
 			//soln.getLiteral("stdValue").getLexicalForm(); 
 			RDFNode x = soln.get("molecule") ; 
@@ -467,13 +176,13 @@ public class Application extends Controller {
 			if(c1 != null){
 				String c = soln.getLiteral("pathwayname").getLexicalForm();
 				myList5.add(c.toString());}
-			
+
 
 			RDFNode d = soln.get("stdType") ; 
 			RDFNode e1 = soln.get("stdValue") ;
 			if(e1!=null){
-			       String e = soln.getLiteral("stdValue").getLexicalForm();
-			       myList7.add(e.toString());}
+				String e = soln.getLiteral("stdValue").getLexicalForm();
+				myList7.add(e.toString());}
 			RDFNode f = soln.get("stdRelation") ; 
 			RDFNode g = soln.get("stdUnit") ;
 
@@ -501,23 +210,23 @@ public class Application extends Controller {
 			RDFNode u = soln.get("targetTitle") ; 
 			RDFNode v = soln.get("targetType") ; 
 			RDFNode w = soln.get("organism") ; 
-			
+
 			RDFNode a1 = soln.get("disease") ; 
 			RDFNode aa = soln.get("document") ; 
 			if(aa != null)
-               myList27.add(aa.toString());
-			
+				myList27.add(aa.toString());
+
 			RDFNode aa1 = soln.get("journalName") ; 
 			if(aa1 != null)
-               myList28.add(aa1.toString());
-			
+				myList28.add(aa1.toString());
+
 			RDFNode aa21 = soln.get("date") ; 
 			if(aa21!=null){
-			       String aa2 = soln.getLiteral("date").getLexicalForm();
-			       myList29.add(aa2.toString());}
-               
-			
-			
+				String aa2 = soln.getLiteral("date").getLexicalForm();
+				myList29.add(aa2.toString());}
+
+
+
 			if(x != null)
 				myList.add(x.toString());
 			if (y!= null)
@@ -528,12 +237,12 @@ public class Application extends Controller {
 				myList3.add(a.toString());
 			if(b != null)
 				myList4.add(b.toString());
-		//	if(c != null)
-		//		myList5.add(c.toString());
+			//	if(c != null)
+			//		myList5.add(c.toString());
 			if(d != null)
 				myList6.add(d.toString());
-		//	if(e != null)
-		//		myList7.add(e.toString());
+			//	if(e != null)
+			//		myList7.add(e.toString());
 			if(f != null)
 				myList8.add(f.toString());
 			if(g != null)
@@ -544,8 +253,8 @@ public class Application extends Controller {
 				myList11.add(i.toString());
 			if(j != null)
 				myList12.add(j.toString());
-		//	if(k != null)
-		//		myList13.add(k.toString());
+			//	if(k != null)
+			//		myList13.add(k.toString());
 			if(l != null)
 				myList14.add(l.toString());
 			if(m != null)
@@ -556,8 +265,8 @@ public class Application extends Controller {
 				myList17.add(o.toString());
 			if(p != null)
 				myList18.add(p.toString());
-		//	if(q != null)
-		//		myList19.add(q.toString());
+			//	if(q != null)
+			//		myList19.add(q.toString());
 			if(r != null)
 				myList20.add(r.toString());
 			if(s != null)
@@ -587,20 +296,19 @@ public class Application extends Controller {
 		//renderTemplate("Application/SPARQLQuery.html", temp);
 		render(temp);
 	}
-   
+
 	public static void contact() {
 		render();
 	}
-		
+
 	public static void documentation() {
-			render();		
-		
+		render();		
+
 	}
 	public static void visualisation() {
 		render();		
-	
-}
 
+	}
 
 }
 

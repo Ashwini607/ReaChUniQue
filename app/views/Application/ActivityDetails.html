@@ -1,7 +1,0 @@
-#{extends 'main.html' /}
-#{set title:'Activity' /}
-<h1> List of activities </h1>
-
-#{list items:ActivityDetails, as:'activities'}
-    <li>${activities ?: 'nothing to show'}</li>
-#{/list}
