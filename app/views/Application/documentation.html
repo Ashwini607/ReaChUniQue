@@ -1,0 +1,156 @@
+#{extends 'main.html' /}
+#{set title:'Documentation' /}
+
+<div class = "container"  height =50%>
+               
+                        <div class = "jumbotron" >
+                                <center><h1>Documentation</h1> 
+                        </div>              
+ </div>
+                               
+<h2> <font color="green">What it does?</font> </h2>
+<br>
+<p>
+Tool has been created by keeping in mind to help the researcher to get the information through federated triple stores using semantic technology. Main information has been taken from ChEMBL triple store, a small drug like molecule store and two others triple store used are UniProt for proteins and their  associated disease and Reactome for pathway. 
+<br>
+<br>
+When you select the options from form according to your problem and submit then it generates the background SPARQL query that runs on ChEMBL SPARQL endpoint. It will reproduce just a limited number of results along with SPARQL query.    
+</p>
+<hr>
+
+<h2> <font color="green">Brief description of used terminology</font> </h2>
+<br>
+<p>
+<b>ChEMBL-id:</b> An identity provided to most of the compounds and unique in ChEMBL triple store.
+<br>
+<br>
+<b>altLabel:</b> Alternative name of compound. This contains most of the trade names for a single compound.
+<br>
+<br>
+<b>Highest Development Phase:</b> The highest phase the molecule has reached in drug approval process (4 = approved).
+<br>
+<br>
+<b>Substance Type:</b> States the type of compound either that is small molecule or protein or cell-line etc.
+<br>
+<br>
+<b>Standard Type:</b> Standardised version of the publishedType, e.g. IC50 rather than Ic-50/Ic50/ic50/ic-50.
+<br>
+<br>
+<b>Standard Value:</b> Standardised version of the publishedValue. Transformed to common units: e.g. All concentration values are converted to values in nannoMolar, all time values are converted to minutes etc.
+<br>
+<br>
+<b>Standard Relation:</b> Standardised version of the publishedRelation and is a symbol constraining the activity value (e.g. >, <, =).
+<br>
+<br>
+<b>Standard Unit:</b> Standardised version of the publishedUnits, e.g. concentrations are in nM.
+<br>
+<br>
+<b>Assay Label:</b> An unique identity provided to assay.
+<br>
+<br>
+<b>Assay Desc:</b> Gives description about the assay.
+<br>
+<br>   
+<b>Assay Type:</b> Assay classification, e.g. Binding assay, ADME assay or Functional assay.
+<br>
+<br>
+<b>targetConfDesc:</b> Description of the target types assigned with each targetConfScore.
+<br>
+<br>
+<b>targetConfScore:</b> Confidence score, indicating how accurately the assigned target(s) represents the actually assay target. Foreign key to CONFIDENCE_SCORE table. 0 means uncurated/unassigned, 1 = low confidence to 9 = high confidence.
+<br>
+<br>
+<b>targetRelType:</b> Flag indicating of the relationship between the reported target in the source document and the assigned target from TARGET_DICTIONARY. Foreign key to RELATIONSHIP_TYPE table.
+<br>
+<br>
+<b>targetRelDesc:</b> Description of targetRelType flags.
+<br>
+<br>
+<b>Target Label:</b> Labeling of target.
+<br>
+<br>
+<b>Target Title:</b> Title provided to target.
+<br>
+<br>
+<b>Target Type:</b> Describes whether target is a protein, an organism, a tissue etc. 
+<br>
+<br>
+<b>Organism:</b> Source organism of molecuar target or tissue, or the target organism if compound activity is reported in an organism rather than a protein or tissue.
+</p>
+<hr>
+
+ 
+<h2><font color="green">How to operate?</font></h2>
+<br>
+<p>
+In form, it has five boxes along with spaces to write text to get the specific result. 
+<br>
+<br>
+Different colour text signifies information taken from respective triple store. 
+<br>
+Black for ChEMBL 
+<br>
+Blue for UniProt  
+<br>
+Red for Reactome  
+<br>
+<br>
+Form has multiple selection options over all boxes at a time. 
+First box options are interlinked so if you are interested in finding all the targets corresponding all the substances then you would have to select the intermediate option too that is activity and assay.  
+<br>
+<br>
+Apart from first box you have freedom to choose the option whatever you want. 
+<br>
+<br>
+If you are interested in protein associated with disease then just select the disease option not protein. 
+<br>
+<br>
+Tool have provided three text boxes for your specific enquiry. In first box you can select the activity standard unit such as ‘nm’, second box is for selecting the activity value with relational operator such as if you are interested in activity less than 10 then write it like ‘<10’, and third box is for selecting organism such as home sapiens, mycobacterium tuberculosis. 
+<br>
+<br>
+Reset button is there so you can reset the options if you need. 
+<br>
+<br>
+<b>Problem:</b>
+
+If you are interested in finding the ChEMBl molecules targeting Mycobacterium having standard activity unit contains nM and value less than 10.
+<br>
+<br>
+
+<b>Way to solve it:</b> You would have to select the following options Substance, Activity, Assay, Target, ChEMBL-id, Standard Value, Standard Unit and Organism and then in text box below Standard Unit write 'nm', below Standard value '<10' and below Organism 'mycobacterium'. 
+
+<img src="@{'/public/images/mycoBacFig2.png'}", alt = "Smiley face">
+</br>
+Slected options have been shown in gray background and values written in text boxes. Text box is a part of filtering so will extract the information related to all the matching text. If you are accurate with your search with case sensitive then you can remove the variable name from the generated SPARQL query and replace with the value. For example here we have search the unit is nm so it will extract the unit containing nm like nM, nmol/min etc. If you are interested in just nM then remove the variable ?stdUnit with 'nM' (?activity cco:standardUnits 'nM'.).      
+<br>
+<br>
+      
+<b>Note:</b> Text inside box goes under FILTER construct of SPARQL query that cause more execution time. If you are confirm about the filtering option in correct form then you can replace that. For example if you want search corresponding to nm Standard Unit then in generated code replace the ?stdUnit with ‘nM’ and run it on ChEMBL Sparql endpoint available at <a>http://www.ebi.ac.uk/rdf/services/chembl/sparql</a>. 
+</p>
+<hr>
+ 
+ 
+<h2><font color="green">Who will get benefit?</font></h2>
+<br>
+Researcher who has not or small knowledge of SPARQL query language and are unfamiliar with schema of triple stores.
+<br>
+<br>
+<hr> 
+ 
+<h2><font color="green">What are the benefits?</font></h2>
+<br>
+Help to understand the schema of triple store (mainly ChEMBL). 
+<br>
+<br>
+No need to learn SPARQL query language for basic problem but if you want to solve the advance problem then it will help you by giving the part of SPARQL query.
+<br>
+<br>
+Able to answer your basic problem, but the number of results will be limited to 11 which will help you to understand that are you getting the part of results that you were looking for or not.  
+<br>
+<br> 
+<hr>
+
+<h2><font color="green">How do we look to this tool?</font></h2> 
+<br>
+Consider there is a tree having varieties of fruits i.e unripe to ripe and small to large. As we know It is very difficult to find the choice of all the people. In case someone is interested to serve the fruits to people according to their choice then the best thing would be give the tools to them and with some efforts they will be able to pluck the fruits of their own choice. Similarly here we are unable to answers all the biological problems related to used triple stores so we have build a platform that could help the researcher to find the solution of their problem in bit easy way.   
+<hr>
