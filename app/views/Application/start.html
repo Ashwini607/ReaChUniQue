@@ -9,7 +9,7 @@
 <hr>
 <form action="@{ChEMBL()}" method="GET" style="width:200px;">
 
-  <select name="details" multiple size=7 style="width: 170px">
+  <select name="details" multiple size=7 style="width: 200px">
   <option value='?molecule cco:hasDocument ?document. ?document rdf:type cco:Document.'> Document</option> 
   <option value='?molecule rdfs:subClassOf cco:Substance. ?molecule cco:hasActivity ?activity.'> Substance </option> 
   <option value="?activity cco:hasAssay ?assay. ?activity rdf:type cco:Activity."> Activity</option> 
@@ -25,19 +25,19 @@
   }"> Pathway</option>
    </select>
  
- <select name="details" multiple style="width: 170px"> 
+ <select name="details" multiple style="width: 200px"> 
  <option value="?document cco:hasJournal ?journal. ?journal dcterms:title ?journalName.">Journal Name</option>
  <option value="?document dcterms:date ?date.">Published Date</option>
  </select>
   
- <select name="details" multiple style="width: 170px"> 
+ <select name="details" multiple style="width: 200px"> 
  <option value="?molecule rdfs:label ?ChEMBL_id.">ChEMBL-id</option>
  <option value="?molecule skos:altLabel ?altLabel.">altLabel</option>
  <option value="?molecule cco:highestDevelopmentPhase ?highestDevelopmentPhase.">Highest Development Phase</option>
  <option value="?molecule cco:substanceType ?substanceType.">Substance Type</option>
  </select>
   
-  <select name="details" multiple style="width: 170px">
+  <select name="details" multiple style="width: 200px">
   <option value="?activity cco:standardType ?stdType."> Standard Type </option> 
   <option value="?activity cco:standardValue ?stdValue.">Standard Value</option>   
   <option value="?activity cco:standardRelation ?stdRelation.">Standard Relation</option>
@@ -47,7 +47,7 @@
   Standard value: <input type="text" name="value" style="width: 170px">
  </select>
  
- <select name="details" multiple style="width: 170px">
+ <select name="details" multiple style="width: 200px">
  <option value="?assay rdfs:label ?assayLabel.">Assay Label</option> 
  <option value="?assay dcterms:description ?assayDesc.">Assay Desc</option>
  <option value="?assay cco:assayType ?assayType.">Assay Type</option>
@@ -57,7 +57,7 @@
  <option value="?assay cco:targetRelDesc ?targetRelDesc.">targetRelDesc</option>
  </select>
  
-  <select name="details" multiple style="width: 170px">
+  <select name="details" multiple style="width: 200px">
   <option value="?target rdfs:label ?targetLabel.">Target Label</option>
   <option value="?target dcterms:title ?targetTitle.">Target Title</option>
   <option value="?target cco:targetType ?targetType.">Target Type</option> 
@@ -66,7 +66,7 @@
   
   </select>
   
- <select name="details" multiple style="width: 170px">
+ <select name="details" multiple style="width: 200px">
  <option class="blue" value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation. ?annotation up:disease ?dis. ?dis skos:prefLabel ?disease. }">Disease</option>
  </select>
  
