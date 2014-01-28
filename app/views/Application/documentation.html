@@ -11,10 +11,13 @@
 <h2> <font color="green">What it does?</font> </h2>
 <br>
 <p>
-Tool has been created keeping in mind to help the researcher who is looking for getting the information through federated triple stores and understanding the schema of triple stores. Most of the information has been taken from ChEMBL triple store, a small drug like molecules store and two other triple stores used are UniProt for proteins and their associated disease, and Reactome for pathway. 
+Tool has been created keeping in mind to help the researcher who is looking for getting the information through federated triple stores and understanding the schema of triple stores. Most of the information has been taken from ChEMBL triple store, a small drug like molecules store and two other triple stores used are UniProt for proteins and their associated disease and Reactome for pathway. 
 <br>
 <br>
 When you select the options from form according to your problem and submit then it generates the background SPARQL query that runs on ChEMBL SPARQL endpoint and provides the results (Limited to 11). It also provides the generated SPARQL query. 
+<br>
+<br>
+As the query execute on ChEMBL SPARQL endpoint so it has same behavior and limitation as endpoint. You can see the more information about this on EBI RDF platform web page. Link is mentioned in footer of this page.  
 </p>
 <hr>
 
@@ -86,7 +89,7 @@ When you select the options from form according to your problem and submit then 
 Form has five boxes to select the options along with three spaces to write text
 <br>
 <br>
-Different colour text signifies information taken from respective triple store. 
+Different text colour in form signifies information taken from respective triple store. 
 <br>
 Black for ChEMBL 
 <br>
@@ -105,7 +108,7 @@ Apart from first box you have freedom to choose the options whatever you want.
 If you are interested in protein associated with disease then select just the disease option not protein and it will give the both information. 
 <br>
 <br>
-Spaces are for filtering your results. In first space you can write the activity standard unit such as ‘nm’, second box is for writing the activity value with relational operator. For example,  if you are interested in activity less than 10 then write it like ‘<10’, and third box is for writing organism name such as Home Sapiens, Mycobacterium tuberculosis. 
+Spaces are for filtering your results. In first space you can write the activity standard unit such as ‘nm’, second space is for writing the activity value with relational operator. For example,  if you are interested in activity less than 10 then write it like ‘<10’, and third space is for writing organism name such as Home Sapiens, Mycobacterium tuberculosis. 
 <br>
 <br>
 Reset button is there so you can reset the options if you need. 
@@ -113,19 +116,19 @@ Reset button is there so you can reset the options if you need.
 <br>
 <b>Problem:</b>
 
-Retrieve the ChEMBl molecules targeting Mycobacterium organism. Where Standard activity unit contains nM, and standard activity value less than 10.
+Retrieve the ChEMBl molecules targeting Mycobacterium organism. Where Standard activity unit contains 'nm', and standard activity value less than 10.
 <br>
 <br>
 
-<b>Way to solve it:</b> You would have to select the following options Substance, Activity, Assay, Target, ChEMBL-id, Standard Value, Standard Unit and Organism and then in text box below Standard Unit write 'nm', below Standard value '<10' and below Organism 'mycobacterium'. 
+<b>Way to solve it:</b> You would have to select the following options Substance, Activity, Assay, Target, ChEMBL-id, Standard Value, Standard Unit and Organism and then in space below Standard Unit write 'nm', below Standard value '<10' and below Organism 'mycobacterium'. 
 
 <img src="@{'/public/images/mycoBacFig2.png'}">
 </br>
-In above snap shot, selected options have gray colour background and values written in text boxes. Text box is a part of filtering the results so will extract the information related to all the matching text. If you are accurate with your search then you can remove the variable name from the generated SPARQL query and replace with the exact value (take care of case sensitivity). For example here we have search the unit is nm so it will extract the unit containing nm like nM, nmol/min etc. If you are interested in just nM then remove the variable ?stdUnit with 'nM' (?activity cco:standardUnits 'nM'.).      
+In above snap shot, selected options have gray colour background and values written in spaces. space is a part of filtering the results so will extract the information related to all the matching text. If you are accurate with your search then you can remove the variable name from the generated SPARQL query and replace with the exact value (take care of case sensitivity). For example here we have search the unit 'nm' so it will extract the units containing 'nm, such as nM, nmol/min etc. If you are interested in just 'nM' then remove the variable ?stdUnit with 'nM' (?activity cco:standardUnits 'nM'.).      
 <br>
 <br>
       
-<b>Note:</b> Text inside box goes under FILTER construct of SPARQL query that causes longer execution time. If you know the exact value to filter then in generated query replace that with the variable name and run on ChEMBL SPARQL endpoint. For example, if you want to search results which contains activity standard unit "nm" then in generated SPARQL query replace the variable ?stdUnit from WHERE clause with ‘nM’ and remove the variable name from SELECT clause. After that run it on ChEMBL Sparql endpoint available at <a>http://www.ebi.ac.uk/rdf/services/chembl/sparql</a>. 
+<b>Note:</b> Text inside space goes under FILTER construct of SPARQL query that causes longer execution time. If you know the exact value to filter then in generated query replace that with the variable name and run on ChEMBL SPARQL endpoint. For example, if you want to search results which contains activity standard unit "nm" then in generated SPARQL query replace the variable ?stdUnit from WHERE clause with ‘nM’ and remove the variable name from SELECT clause. After that run it on ChEMBL Sparql endpoint available at <a>http://www.ebi.ac.uk/rdf/services/chembl/sparql</a>. 
 </p>
 <hr>
  
