@@ -11,7 +11,7 @@ GET   /SPARQLQuery                              Application.SPARQLQuery
 GET /contact                                    Application.contact
 GET /documentation                              Application.documentation
 GET /visualisation                              Application.visualisation
-
+GET /home                                       Application.home
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

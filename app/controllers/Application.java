@@ -34,7 +34,7 @@ public class Application extends Controller {
 
 	public static void index() {
 		
-		start();
+		home();
 	}
 
 
@@ -303,13 +303,15 @@ public class Application extends Controller {
 
 	public static void documentation() {
 		render();		
-
 	}
+	
 	public static void visualisation() {
 		render();		
-
 	}
 
+	public static void home() {
+		render();		
+	}
 }
 
 
