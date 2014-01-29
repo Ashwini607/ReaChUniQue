@@ -1,14 +1,15 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<p><font size="5" color="green"><b>Select the options from form and then Submit according to your query</b></font></p> 
+<p><font size="5" color="green"><b>Select the options from form and then submit according to your query</b></font></p> 
 <br>
 
-<p>If you do not know how to operate then go through the Documentation page. if you want to see the connectivity <a href="http://localhost:9001/visualisation"> click here</a></p>
+<p>To know more about how does tool work go to <a href="http://localhost:9001/documentation">Documentation</a> page. You can see the <a href="http://localhost:9001/visualisation"> connectivity</a> among these all options.</p>
+<p>Different colour text in box retrieve information from respective triple store: black from <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a>, blue from <a href="http://beta.sparql.uniprot.org">UniProt</a> and red from <a href="http://www.ebi.ac.uk/rdf/services/reactome/sparql">Reactome</a>.</p> 
 <hr>
-<form action="@{ChEMBL()}" method="GET" style="width:200px;">
-
-  <select name="details" multiple size=7 style="width: 200px">
+<form action="@{ChEMBL()}" method="GET" style="width:220px;">
+  <label>Box 1: ITo link the following information</label>
+  <select name="details" multiple size=7 style="width: 210px">
   <option value='?molecule cco:hasDocument ?document. ?document rdf:type cco:Document.'> Document</option> 
   <option value='?molecule rdfs:subClassOf cco:Substance. ?molecule cco:hasActivity ?activity.'> Substance </option> 
   <option value="?activity cco:hasAssay ?assay. ?activity rdf:type cco:Activity."> Activity</option> 
@@ -23,20 +24,28 @@
   ?reaction ?rel ?dbXref.
   }"> Pathway</option>
    </select>
- 
- <select name="details" multiple style="width: 200px"> 
+
+ <br>
+ <br>   
+ <label>Box 2: Properties of Document</label>
+ <select name="details" multiple style="width: 210px"> 
  <option value="?document cco:hasJournal ?journal. ?journal dcterms:title ?journalName.">Journal Name</option>
  <option value="?document dcterms:date ?date.">Published Date</option>
  </select>
-  
- <select name="details" multiple style="width: 200px"> 
+ <br>
+ <br>
+ <label>Box 3: Properties of Substance</label> 
+ <select name="details" multiple style="width: 210px"> 
  <option value="?molecule rdfs:label ?ChEMBL_id.">ChEMBL-id</option>
- <option value="?molecule skos:altLabel ?altLabel.">altLabel</option>
+ <option value="?molecule skos:altLabel ?altLabel.">Alternate Name</option>
  <option value="?molecule cco:highestDevelopmentPhase ?highestDevelopmentPhase.">Highest Development Phase</option>
  <option value="?molecule cco:substanceType ?substanceType.">Substance Type</option>
  </select>
   
-  <select name="details" multiple style="width: 200px">
+ <br>
+ <br>
+  <label>Box 4: Properties of Activity</label> 
+  <select name="details" multiple style="width: 210px">
   <option value="?activity cco:standardType ?stdType."> Standard Type </option> 
   <option value="?activity cco:standardValue ?stdValue.">Standard Value</option>   
   <option value="?activity cco:standardRelation ?stdRelation.">Standard Relation</option>
@@ -45,27 +54,37 @@
   Standard unit: <input type="text" name="unit" style="width: 170px">
   Standard value: <input type="text" name="value" style="width: 170px">
  </select>
- 
- <select name="details" multiple style="width: 200px">
+
+ <br>
+ <br> 
+ <label>Box 5: Properties of Assay</label> 
+ <select name="details" multiple style="width: 210px">
  <option value="?assay rdfs:label ?assayLabel.">Assay Label</option> 
- <option value="?assay dcterms:description ?assayDesc.">Assay Desc</option>
+ <option value="?assay dcterms:description ?assayDesc.">Assay Description</option>
  <option value="?assay cco:assayType ?assayType.">Assay Type</option>
- <option value="?assay cco:targetConfDesc ?targetConfDesc.">targetConfDesc</option>
- <option value="?assay cco:targetConfScore ?targetConfScore.">targetConfScore</option>
- <option value="?assay cco:targetRelType ?targetRelType.">targetRelType</option>
- <option value="?assay cco:targetRelDesc ?targetRelDesc.">targetRelDesc</option>
+ <option value="?assay cco:targetConfScore ?targetConfScore.">Target Confidence Score</option>
+ <option value="?assay cco:targetConfDesc ?targetConfDesc.">Target Confidence Description</option>
+ <option value="?assay cco:targetRelType ?targetRelType.">Target Relation Type</option>
+ <option value="?assay cco:targetRelDesc ?targetRelDesc.">Target Relation Description</option>
  </select>
  
-  <select name="details" multiple style="width: 200px">
+ <br>
+ <br>
+  <label>Box 6: Properties of Target</label> 
+  <select name="details" multiple style="width: 210px">
   <option value="?target rdfs:label ?targetLabel.">Target Label</option>
   <option value="?target dcterms:title ?targetTitle.">Target Title</option>
   <option value="?target cco:targetType ?targetType.">Target Type</option> 
   <option value="?target cco:organismName ?organism.">Organism</option>
+  
   Organism name: <input type="text" name="firstname" style="width: 170px">
   
   </select>
   
- <select name="details" multiple style="width: 200px">
+ <br>
+ <br>
+ <label>Box 7: Properties of Protein</label> 
+ <select name="details" multiple style="width: 210px">
  <option class="blue" value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation. ?annotation up:disease ?dis. ?dis skos:prefLabel ?disease. }">Disease</option>
  </select>
  
