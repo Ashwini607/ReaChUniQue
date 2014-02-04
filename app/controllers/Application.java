@@ -48,7 +48,6 @@ public class Application extends Controller {
 			"PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>\n" +
 			"PREFIX dc:<http://purl.org/dc/elements/1.1/>\n" +
 			"PREFIX dcterms:<http://purl.org/dc/terms/>\n" +
-			"PREFIX foaf:<http://xmlns.com/foaf/0.1/>\n" +
 			"PREFIX skos:<http://www.w3.org/2004/02/skos/core#>\n" +
 			"PREFIX cco:<http://rdf.ebi.ac.uk/terms/chembl#>\n" +
 			"PREFIX biopax3:<http://www.biopax.org/release/biopax-level3.owl#>\n" +
@@ -58,7 +57,7 @@ public class Application extends Controller {
 	public static String mixQuery;
 
 
-	public static void ChEMBL(String details, String firstname, String unit, String value){
+	public static void ChEMBL(String details, String firstname, String unit, String value, String journal, String date, String phase, String type, String score){
 		String organism = new String();
 
 		if (firstname.length()>0){
@@ -74,8 +73,33 @@ public class Application extends Controller {
 		String values = new String();		
 		if (value.length()>0){
 			values = "FILTER (?stdValue" +value+ ")";
+		}
+		
+		String journals = new String();		
+		if (journal.length()>0){
+			journals = "FILTER regex(?journalName,'" +journal+ "', 'i')";
 		} 
 
+		String dates = new String();		
+		if (date.length()>0){
+			dates = "FILTER (?date" +date+ ")";
+		}
+		
+		String phases = new String();		
+		if (phase.length()>0){
+			phases = "FILTER (?highestDevelopmentPhase" +phase+ ")";
+		}
+		
+		String types = new String();		
+		if (type.length()>0){
+			types = "FILTER regex(?assayType,'" +type+ "', 'i')";
+		}
+		
+		String scores = new String();		
+		if (score.length()>0){
+			scores = "FILTER (?targetConfScore" +score+ ")";
+		}
+		
 		List <String> myList = new ArrayList(); 
 		List <String> myList1 = new ArrayList();
 		List <String> myList2 = new ArrayList();
@@ -107,7 +131,7 @@ public class Application extends Controller {
 		List <String> myList28 = new ArrayList();
 		List <String> myList29 = new ArrayList();
 
-		String selection = "?molecule ?document ?journalName ?date ?activity ?stdType ?stdValue ?stdRelation ?stdUnit ?assay ?target ?protein ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?altLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ?disease";
+		String selection = "  ?journalName ?date ?stdType ?stdValue ?stdRelation ?stdUnit ?protein ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?altLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ?disease";
 		String addSelection =  new String();
 		String[] finalSelection = selection.split(" ");
 		String[] finalDetails = details.split(" ");
@@ -145,13 +169,18 @@ public class Application extends Controller {
 
 		details = details.replaceAll(",", "");
 		System.out.println(addSelection);
-		mixQuery = addFirst + "SELECT "+
+		mixQuery = addFirst + "SELECT DISTINCT"+
 				addSelection+
 				" WHERE { \n" +
 				details +
 				organism +	
 				units +
 				values +
+				journals +
+				dates +
+				phases +
+				types +
+				scores +
 
 				"}\n"+
 				"LIMIT 11";

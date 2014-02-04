@@ -7,20 +7,28 @@
                                 <center><h1>Documentation</h1> 
                         </div>              
  </div>
-                               
-<h2> <font color="green">What does this tool do?</font> </h2>
+ <div>
+ <li><a href="#tool"><h2> <font color="green" size ="5">What does this tool do?</font> </h2></a></li>
+ <li> <a href="#desc"> <h2> <font color="green" size ="5"> Description of the terminology used in this tool.</font> </h2></a></li>
+ <li> <a href="#work"><h2><font color="green" size ="5">How to play this tool?</font></h2> </a></li>
+ <li> <a href="#analogy"> <h2><font color="green" size ="5">An analogy to understand this tool.</font></h2> </a></li>
+</div>
+<hr> 
+<div id="tool"><h2> <font color="green">What does this tool do?</font> </h2>
 <p>
 <br>
 This tool can help the researcher to retrieve the information through federated triple stores and to understand the schema. Most of the information come from <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a> triple store, a small drug like molecules store. Two other triple stores used are <a href="http://beta.sparql.uniprot.org">UniProt</a> for proteins and their associated disease and <a href="http://www.ebi.ac.uk/rdf/services/reactome/sparql">Reactome</a> for pathway. 
 <br>
 <br>
-Once you submit the selected options of the form, it produces results of your query. The limit of the number of results produce is 11. From this many results, you can decide that the generated SPARQL query is enough for your problem or need modification. Modify the query if needed. And finally execute the query on <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a> SPARQL endpoint to produce more results. Look at <a href="http://www.ebi.ac.uk/rdf/faq/what-are-limitations-sparql-endpoints">limitation of ChEMBL SPARQL endpoint.</a>   
+Once you submit the selected options along with text in the fields according to your query, the results will produce in new page. The limit of the number of results produce is 11. From this many results, you can decide that the generated SPARQL query is enough for your problem or need modification. Modify the query if needed. And finally execute the query on <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a> SPARQL endpoint to produce more results. Look at <a href="http://www.ebi.ac.uk/rdf/faq/what-are-limitations-sparql-endpoints">limitation of ChEMBL SPARQL endpoint.</a>   
 </p>
+</div>
 <hr>
 
-<h2> <font color="green"> Description of terminology used in the form.</font> </h2>
+<div id="desc">
+<h2> <font color="green"> Description of the terminology used in this tool.</font> </h2>
 <br>
-<p>
+<p id="substance">
 <b>ChEMBL-id:</b> An identity provided to most of the compounds and unique in ChEMBL triple store.
 <br>
 <br>
@@ -33,6 +41,8 @@ Once you submit the selected options of the form, it produces results of your qu
 <b>Substance Type:</b> States the type of compound either that is small molecule or protein or cell-line etc.
 <br>
 <br>
+</p>
+<p id ="activity">
 <b>Standard Type:</b> Standardised version of the activity type, e.g. IC50 rather than Ic-50/Ic50/ic50/ic-50.
 <br>
 <br>
@@ -45,6 +55,9 @@ Once you submit the selected options of the form, it produces results of your qu
 <b>Standard Unit:</b> Standardised version of the activity units, e.g. concentrations are in nM.
 <br>
 <br>
+</p>
+
+<p id ="assay">
 <b>Assay Label:</b> A unique identity provided to assay.
 <br>
 <br>
@@ -66,6 +79,9 @@ Once you submit the selected options of the form, it produces results of your qu
 <b>Target Relation Description:</b> Description about Target Relation Type.
 <br>
 <br>
+</p>
+
+<p id ="target">
 <b>Target Label:</b> Labeling of target.
 <br>
 <br>
@@ -77,13 +93,14 @@ Once you submit the selected options of the form, it produces results of your qu
 <br>
 <b>Organism:</b> Source organism of molecular target or tissue, or the target organism if compound activity is reported in an organism rather than a protein or tissue.
 </p>
+</div>
 <hr>
 
- 
-<h2><font color="green">How does tool work?</font></h2>
+<div id ="work"> 
+<h2><font color="green">How to play this tool?</font></h2>
 <br>
 <p>
-The form has five boxes to select the options along with three spaces to write text
+The form has seven boxes to select the options along with three fields to write text
 <br>
 <br>
 Different text colour in the form signifies information taken from respective triple store. 
@@ -96,10 +113,10 @@ Red for Reactome
 <br>
 <br>
 The form has multiple selection options over all boxes at a time. 
-First box options are interlinked so if you are interested in finding all the targets corresponding to all the substances then you would have to select the intermediate option too, i.e. Activity and Assay.  
+Box: 1 options are interlinked so if you are interested in finding all the targets corresponding to all the substances then you would have to select the intermediate options too, i.e. Activity and Assay.  
 <br>
 <br>
-Apart from first box you have freedom to choose the options whatever you want. 
+Apart from Box: 1, you have freedom to choose the options whatever you want. 
 <br>
 <br>
 If you are interested in protein associated with disease then select just the disease option not the protein and it will give both information. 
@@ -125,36 +142,18 @@ Retrieve the ChEMBl molecules targeting Mycobacterium organism. Where Standard a
 <br>
 <img src="@{'/public/images/mycoBacFig2.png'}">
 </br>
-In above snap shot, selected options have gray colour background and values written in fields. field is a part of filtering the results so will extract the information related to all the matching text. If you are accurate with your search then you can remove the variable name from the generated SPARQL query and replace with the exact value (take care of case sensitivity). For example here we have search the unit 'nm' so it will extract the units containing 'nm, such as nM, nmol/min etc. If you are interested in just 'nM' then remove the variable ?stdUnit with 'nM' (?activity cco:standardUnits 'nM'.).      
+In the above snapshot, selected options have a gray colour background and the values written in the fields. The field is a part of filtering the results. If you are accurate with your search, you would have to replace the variable name from the generated SPARQL query with the exact value (take care of case sensitivity). For example, here, we have searched the unit 'nm', therefore, it will extract the units containing 'nm', such as 'nM', 'nmol/min' etc. If you are interested in just 'nM' then replace the variable name '?stdUnit' with 'nM' (?activity cco:standardUnits 'nM'.). Now, remove the FILTER line. <a href="http://tinyurl.com/qacha6r"> See the results live </a>     
 <br>
 <br>
       
-<b>Note:</b> For the one who is trying the SPARQL query on endpoint. Text inside field goes under FILTER construct of SPARQL query that causes longer execution time. If you know the exact value to filter then in generated query replace that with the variable name and run on ChEMBL SPARQL endpoint. For example, if you want to search results which contains activity standard unit "nm" then in generated SPARQL query replace the variable ?stdUnit from WHERE clause with ‘nM’ and remove the variable name from SELECT clause. After that run it on ChEMBL Sparql endpoint available at <a>http://www.ebi.ac.uk/rdf/services/chembl/sparql</a>. 
+<b>Note:</b> For the one who is trying the SPARQL query on the endpoint. Text inside field goes under FILTER construct of a SPARQL query that causes longer execution time. If you know the exact value to filter, from generated query remove the FILTER line and replace the variable name from remaining query. Now, execute the query on ChEMBL SPARQL endpoint. For example, if you want to search results which contains activity standard unit "nm" then in generated SPARQL query remove the FILTER line (?activity cco:standardUnit ?stdUnit) and replace the variable ?stdUnit from WHERE clause with ‘nM’. Remove the variable name from SELECT clause. After that executes it on <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL Sparql endpoint</a>. 
 </p>
+</div>
 <hr>
  
- 
-<h2><font color="green">Who will get benefit?</font></h2>
+<div id ="analogy">
+<h2><font color="green">An analogy to understand this tool.</font></h2> 
 <br>
-Researcher who has not or small knowledge of SPARQL query language and are unfamiliar with schema of triple stores.
-<br>
-<br>
-<hr> 
- 
-<h2><font color="green">What are the benefits?</font></h2>
-<br>
-Help to understand the schema of triple store (mainly ChEMBL). 
-<br>
-<br>
-No need to learn SPARQL query language for basic problem but if you want to solve the advance problem then it will help you by giving the part of SPARQL query.
-<br>
-<br>
-Able to answer your basic problem, but the number of results will be limited to 11 which will be helpful to understand that are you getting the part of results that you were looking for or not.  
-<br>
-<br> 
-<hr>
-
-<h2><font color="green">An analogy to understand this tool</font></h2> 
-<br>
-Consider there is a tree having varieties of fruits i.e unripe to ripe and small to large. As we know It is very difficult to find the choice of all the people. In case someone is interested to serve the fruits to people according to their choice then the best thing would be give the tools to them so that with some efforts they will be able to pluck the fruits of their own choice. Similarly here we are unable to answers all the biological problems related to used triple stores so we have build a platform that could help the researcher to find the solution of their problem in bit easy way.   
+Consider there is a tree having varieties of fruits, i.e. unripe to ripe and small to large. As we know, the choice to eat the same fruit varies w.r.t. the people according to the varieties. It is very difficult to find the choice of all the people. In case, someone wants to serve the fruits to the people according to their choice. The best idea would be given the tools to them. The tool will help the people to pluck the fruits of their own choice. Similarly, here we are unable to answer all the biological problems related to the triple stores, therefore, we have built a platform that could help the researcher to find the solution of their problem in bit easy way.   
+</div>
 <hr>

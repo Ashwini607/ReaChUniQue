@@ -14,7 +14,7 @@
          <!-- Latest compiled and minified CSS -->
          <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
          <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/styles.css'}">
-
+         <link rel"stylesheet" href="https://gist.github.com/pseidemann/4458612">
          <style>
           .red {
 	             color: red;	             
@@ -23,6 +23,18 @@
 	           color: blue;
 	           
               }
+              
+
+  
+ $('[data-toggle="tooltip"]').tooltip({
+    'placement': 'top'
+});
+$('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+        'placement': 'top'
+});
+
+  
         </style>
         
     </head>
@@ -39,11 +51,12 @@
           </button>
           
           <div class = "collapse navbar-collapse navHeaderCollapse">
-            <ul class="nav navbar-nav navbar-right">           
-             <li><a href= "http://localhost:9001/home">Home</a></li>
-             <li><a href = "http://localhost:9001/documentation">Documentation</a></li>
+            <ul class="nav navbar-nav navbar-right"> 
+           
+             <li><a href= "http://localhost:9001/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+             <li><a href = "http://localhost:9001/documentation"><span class="glyphicon glyphicon-book"></span> Documentation</a></li>
              <!-- <li><a href = "#">FAQ</a></li> -->
-             <li><a href = "https://github.com/Ashwini607/ReaChUniQue">Source code</a></li>
+             <li><a href = "https://github.com/Ashwini607/ReaChUniQue"><span class="glyphicon glyphicon-folder-open"></span> Source code</a></li>
             </ul> 
              
         </div>
