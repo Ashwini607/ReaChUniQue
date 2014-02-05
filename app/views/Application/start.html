@@ -3,7 +3,7 @@
 
 
 
-<p><font size="5" color="green"><b>Select the options from form and then submit according to your query</b></font></p> 
+<p><font size="5" color="green"><b>Solve your query: first fill up the form given below and then submit</b></font></p> 
 <br>
 
 <p>To know more about how does this tool work, go to the <a href="http://localhost:9001/documentation">Documentation</a> page. You can see the <a href="http://localhost:9001/visualisation"> connections</a> among these all options.</p>
@@ -12,15 +12,15 @@
 <hr>
 <form action="@{ChEMBL()}" method="GET" style="width:230px;">
 
-<p id="tool" class="muted" style="margin-bottom: 0;"><a href="#" data-toggle="tooltip" title="Options inside this box are linked. Select all the options in between your source of interest and then select their properties from respective boxes as per your query. Some properties have a field below their name that helps is filtering the results."><b> Box 1 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Main Sources </b></p>
+<p id="tool" class="muted" style="margin-bottom: 0;"><a href="#" data-toggle="tooltip" title="Options inside this box help to link the sources. Select all the options in between your interest, i.e. if you are interested in finding the substance and their target then select the “Assay” and  “Activity” options too.  Then after, select options from respective properties of the source."><b> Box 1 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Main Sources </b></p>
 
-  <select name="details" multiple size=7 style="width: 230px">
+  <select name="details" multiple size=6 style="width: 230px">
   <option value='?molecule cco:hasDocument ?document. ?document rdf:type cco:Document.'> Document</option> 
   <option value='?molecule rdfs:subClassOf cco:Substance. ?molecule cco:hasActivity ?activity.'> Substance </option> 
   <option value="?activity cco:hasAssay ?assay. ?activity rdf:type cco:Activity."> Activity</option> 
   <option value="?assay cco:hasTarget ?target. ?assay rdf:type cco:Assay.">Assay</option>   
   <option value="?target cco:hasTargetComponent ?tarComp . ?target rdfs:subClassOf cco:Target. ?tarComp skos:exactMatch ?protein .">Target</option>
-  <option class="blue" value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation.}"> Protein</option>
+   
   <option class="red" value="SERVICE <http://www.ebi.ac.uk/rdf/services/reactome/sparql> {
   ?dbXref rdf:type biopax3:Protein .
   ?dbXref biopax3:memberPhysicalEntity [biopax3:entityReference ?protein  ] .
@@ -30,20 +30,24 @@
   }"> Pathway</option>
    </select>
 
+
+<select name="uni" multiple style="width: 230px">
+  <option class="blue" value="?protein a up:Protein. ?protein up:recommendedName ?recommended."> Protein</option>
+</select>
  <br>
  <br>  
- <p id="tool" class="muted" style="margin-bottom: 0;"><a href="#" data-toggle="tooltip" title="This box retrieves information about document where data has mentioned. Options inside this box are independent of each other."><b> Box 2 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of Document</b></p>
+ <p id="tool" class="muted" style="margin-bottom: 0;"><a href="#" data-toggle="tooltip" title="This box retrieves information about the properties of the document from where data has taken. Options inside this box are independent of each other. In given field below, you can write the text to filter the results if exist."><b> Box 2 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of the document</b></p>
 
  <select name="details" multiple style="width: 230px"> 
  <option value="?document cco:hasJournal ?journal. ?journal dcterms:title ?journalName.">Journal Name</option>
  <option value="?document dcterms:date ?date.">Published Date</option>
  </select>
-   Journal Name: <input type="text" name="journal" style="width: 170px">
-   Published Date: <input type="text" name="date" style="width: 170px">
+   Journal Name: <input type="text" name="journal" style="width: 180px">
+   Published Date: <input type="text" name="date" style="width: 180px">
  
  <br>
  <br>
- <p id="tool" class="muted" style="margin-bottom: 0;"><a href="http://localhost:9001/documentation#substance" data-toggle="tooltip" title="This box retrieves information about substance. Options inside this box are independent of each other. Click to see the description of properties."><b> Box 3 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of Substance</b></p>  
+ <p id="tool" class="muted" style="margin-bottom: 0;"><a href="http://localhost:9001/documentation#substance" data-toggle="tooltip" title="This box retrieves information about the properties of the substance. Options inside this box are independent of each other. In given field below, you can write the text to filter the results if exist. Click to see the description of the properties."><b> Box 3 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of the substance</b></p>  
  
  <select name="details" multiple style="width: 230px"> 
  <option value="?molecule rdfs:label ?ChEMBL_id."><a href="#"> ChEMBL-id</a></option>
@@ -51,11 +55,11 @@
  <option value="?molecule cco:highestDevelopmentPhase ?highestDevelopmentPhase.">Highest Development Phase</option>
  <option value="?molecule cco:substanceType ?substanceType.">Substance Type</option>
  </select>
-   Highest Development Phase: <input type="text" name="phase" style="width: 170px">
+   Highest Development Phase: <input type="text" name="phase" style="width: 180px">
   
  <br>
  <br>
- <p id="tool" class="muted" style="margin-bottom: 0;"><a href="http://localhost:9001/documentation#activity" data-toggle="tooltip" title="This box retrieves information about Activity. Options inside this box are independent of each other. The Fields filter the results for standard activity unit and standard activity value respectively. Click to see the description of properties."><b> Box 4 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of Activity</b></p>  
+ <p id="tool" class="muted" style="margin-bottom: 0;"><a href="http://localhost:9001/documentation#activity" data-toggle="tooltip" title="This box retrieves information about the properties of the activity. Options inside this box are independent of each other. In given field below, you can write the text to filter the results if exist. Click to see the description of the properties."><b> Box 4 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of the activity</b></p>  
   
   <select name="details" multiple style="width: 230px">
   <option value="?activity cco:standardType ?stdType."> Standard Type </option> 
@@ -63,12 +67,12 @@
   <option value="?activity cco:standardRelation ?stdRelation.">Standard Relation</option>
   <option value="?activity cco:standardUnits ?stdUnit.">Standard Unit</option>
  </select>
-  Standard Value: <input type="text" name="value" style="width: 170px">
-  Standard Unit: <input type="text" name="unit" style="width: 170px">
+  Standard Value: <input type="text" name="value" style="width: 180px">
+  Standard Unit: <input type="text" name="unit" style="width: 180px">
 
  <br>
  <br> 
-  <p id="tool" class="muted" style="margin-bottom: 0;"><a href="http://localhost:9001/documentation#assay" data-toggle="tooltip" title="This box retrieves information about Assay. What are these properties have been mentioned in documentation page.Options inside this box are independent of each other. Click to see the description of properties."><b> Box 5 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of Assay</b></p>  
+  <p id="tool" class="muted" style="margin-bottom: 0;"><a href="http://localhost:9001/documentation#assay" data-toggle="tooltip" title="This box retrieves information about the properties of the assay. Options inside this box are independent of each other. In given field below, you can write the text to filter the results if exist. Click to see the description of the properties."><b> Box 5 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of the assay</b></p>  
  
  <select name="details" multiple style="width: 230px">
  <option value="?assay rdfs:label ?assayLabel.">Assay Label</option> 
@@ -79,12 +83,12 @@
  <option value="?assay cco:targetRelType ?targetRelType.">Target Relation Type</option>
  <option value="?assay cco:targetRelDesc ?targetRelDesc.">Target Relation Description</option>
  </select>
-  Assay Type: <input type="text" name="type" style="width: 170px">
-  TargetConfidence Score: <input type="text" name="score" style="width: 170px">
+  Assay Type: <input type="text" name="type" style="width: 180px">
+  TargetConfidence Score: <input type="text" name="score" style="width: 180px">
  
  <br>
  <br>
- <p id="tool" class="muted" style="margin-bottom: 0";"><a href="http://localhost:9001/documentation#target" data-toggle="tooltip" title="This box retrieves information about Target. Options inside this box are independent of each other. If you are interested in some particular organism, in the field, you can mention the organism name, such as 'Homo sapiens', 'Mycobacterium'. Click to see the description of properties."><b> Box 6 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of Target</b></p>  
+ <p id="tool" class="muted" style="margin-bottom: 0";"><a href="http://localhost:9001/documentation#target" data-toggle="tooltip" title="This box retrieves information about the properties of the target. Options inside this box are independent of each other. In given field below, you can write the text to filter the results if exist. Click to see the description of the properties."><b> Box 6 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of the target</b></p>  
 
 
   <select name="details" multiple style="width: 230px">
@@ -94,15 +98,20 @@
   <option value="?target cco:organismName ?organism.">Organism</option>
    
   </select>
-   Organism name: <input type="text" name="firstname" style="width: 170px">
+   Organism: <input type="text" name="firstname" style="width: 180px">
  <br>
  <br>
- <p id="tool" class="muted" style="margin-bottom: 0;"><a href="#" data-toggle="tooltip" title="This box retrieves information about disease associated with protein."><b> Box 7 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of Protein</b></p>  
+ <p id="tool" class="muted" style="margin-bottom: 0;"><a href="#" data-toggle="tooltip" title="This box retrieves information about the properties of the protein. Options inside this box are independent of each other. In given field below, you can write the text to filter the results if exist. "><b> Box 7 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Properties of the protein</b></p>  
  
- <select name="details" multiple style="width: 230px">
- <option class="blue" value="SERVICE <http://beta.sparql.uniprot.org/sparql> {?protein a up:Protein. ?protein up:annotation ?annotation. ?annotation up:disease ?dis. ?dis skos:prefLabel ?disease. }">Disease</option>
+ <select name="uni" multiple style="width: 230px">
+ <option class="blue" value="?protein up:annotation ?annotation. ?annotation up:disease ?dis. ?dis skos:prefLabel ?disease.">Disease</option>
+ <option class="blue" value="?protein up:sequence ?seq.  ?seq rdf:value ?aa.">Protein Sequence</option>
+ 
  </select>
+ Disease: <input type="text" name="dis" style="width: 180px">
  
+<br> 
+<br> 
 <input type="submit" style="background-color:#33FF99" value="Submit"><input type="reset" style="background-color:#FF6633">
 
 </form>
@@ -112,14 +121,4 @@
 
 
 
-<!--
-<script type="text/javascript">
-    $(function(){
-        $("option").bind("dblclick", function(){
-        window.location = this.href='http://localhost:9001/activity';
-            
-        });
-    });
-</script> 
--->
 

@@ -1,0 +1,65 @@
+#{extends 'main.html' /}
+#{set title:'Example' /}
+
+<div class = "container"  height =50%>
+               
+                        <div class = "jumbotron" >
+                                <center><h1>Example</h1> 
+                        </div>              
+ </div>
+ <div>
+
+We are providing the snapshot of the form to solve the particular problem. Selected options have shown with a gray background and the text written in the fields. Select the options and fill the fields according to your problem. Now, submit to get the results and the generated SPARQL query.<hr>
+<b>EXAMPLE 1:</b> To know the values of the properties, you can choose any properties options and see the results. For example, to retrieve the name of the journal. Select the Journal Name property and submit. Similarly, You can check the other properties.
+<br>
+<br>
+<b> Way to solve: </b>
+<br> 
+<img src="@{'/public/images/eg1.png'}">
+<br>
+<br> 
+<b>EXAMPLE 2:</b> Finding the property's value can help you for filtering the results. For example, if you do not know the value of Assay Type property, then can search for that first and then in the next step you can use that value to filter the results. In case, you decided to find all the targets for all the substances having assay type "binding".  
+<br>
+<br>
+<b> Way to solve: </b>
+<br>  
+<img src="@{'/public/images/eg2.png'}">
+<br>
+<br> 
+
+<b>EXAMPLE 3:</b> Retrieve the compounds targeting the bacteria having a confidence score greater than 6. You can see the description about the target confidence score in details, in the page <a href ="https://www.ebi.ac.uk/chembl/faq#faq24">ChEMBL FAQ</a>.  
+<br>
+<br>
+<b> Way to solve: </b>
+<br>  
+<img src="@{'/public/images/eg3.png'}">
+<br>
+<br> 
+
+<b>EXAMPLE 4:</b> Retrieve the approved drug for Mycobacterium target.
+<br>
+<br> 
+<b> Way to solve: </b>
+<br> 
+<img src="@{'/public/images/eg4.png'}">
+<br>
+<br> 
+
+<b>EXAMPLE 5:</b> Retrieve the compounds targeting bacteria having activity standard value less than 10 and standard unit 'nM'. If you search for it, then you will get a null result, because information is not available that you are looking. But if you will change the standard value filtering to greater than 10 then the results will be more.  
+<br>
+<br> 
+<b> Way to solve: </b>
+<br> 
+<img src="@{'/public/images/eg5.png'}">
+<br>
+<br> 
+
+<b>EXAMPLE 6:</b> Retrieve the proteins and their sequence involved in Alzheimer disease.
+<br>
+<br>
+<b> Way to solve: </b>
+<br>  
+<img src="@{'/public/images/eg6.png'}">
+
+<hr> 
+ You can find the very similar examples and their solution in the <a href="https://github.com/Ashwini607/ChEMBL-RDF-Queries">GitHub</a> repository.

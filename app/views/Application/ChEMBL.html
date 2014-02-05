@@ -122,6 +122,10 @@
 <th>disease</th>
 #{/if}
 
+#{if myList30}
+<th>aa</th>
+#{/if}
+
 #{if myList5}
 <th>Pathway</th>
 #{/if}
@@ -130,7 +134,7 @@
 <tbody>
 %{
 
-List list = Arrays.asList(myList.size(), myList1.size(), myList2.size(), myList3.size(),myList4.size(), myList5.size(), myList6.size(), myList7.size(),myList8.size(), myList9.size(), myList10.size(), myList11.size(),myList12.size(), myList13.size(), myList14.size(), myList15.size(), myList16.size(), myList17.size(), myList18.size(), myList19.size(),myList20.size(), myList21.size(), myList22.size(), myList23.size(), myList24.size(), myList25.size(),myList26.size(),myList27.size(),myList28.size(),myList29.size() )
+List list = Arrays.asList(myList.size(), myList1.size(), myList2.size(), myList3.size(),myList4.size(), myList5.size(), myList6.size(), myList7.size(),myList8.size(), myList9.size(), myList10.size(), myList11.size(),myList12.size(), myList13.size(), myList14.size(), myList15.size(), myList16.size(), myList17.size(), myList18.size(), myList19.size(),myList20.size(), myList21.size(), myList22.size(), myList23.size(), myList24.size(), myList25.size(),myList26.size(),myList27.size(),myList28.size(),myList29.size(),myList30.size()  )
 max = 0
 for(i=0; i<list.size(); i++){
  if(max<list[i])
@@ -314,6 +318,12 @@ out.print("</td>")
 if(myList26.size()>0)
 {out.print("<td>")
 out.println(myList26[i])
+out.print("</td>")
+}
+
+if(myList30.size()>0)
+{out.print("<td>")
+out.println(myList30[i])
 out.print("</td>")
 }
 
