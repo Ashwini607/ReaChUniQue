@@ -9,13 +9,15 @@
  </div>
  <div>
  <li><a href="#tool"><h2> <font color="green" size ="5">What does this tool do?</font> </h2></a></li>
+  <li> <a href="#better"> <h2> <font color="green" size ="5">Why is this tool better than using directly the ChEMBL end-point?</font> </h2></a></li>
  <li> <a href="#desc"> <h2> <font color="green" size ="5"> Description of the terminology used in this tool.</font> </h2></a></li>
  <li> <a href="#work"><h2><font color="green" size ="5">How to play this tool?</font></h2> </a></li>
   <li> <a href="#nullRes"><h2><font color="green" size ="5">What if result is coming null?</font></h2></a></li>
  <li> <a href="#analogy"> <h2><font color="green" size ="5">An analogy to understand this tool.</font></h2> </a></li>
 </div>
 <hr> 
-<div id="tool"><h2> <font color="green">What does this tool do?</font> </h2>
+<div id="tool">
+<h2> <font color="green">What does this tool do?</font> </h2>
 <p>
 <br>
 This tool can help the researcher to retrieve the information through the federated triple stores, and to understand the schema. Most of the information comes from <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a> triple store, a small drug like molecules store. Two other triple stores used are <a href="http://beta.sparql.uniprot.org">UniProt</a> for the proteins and their associated disease and <a href="http://www.ebi.ac.uk/rdf/services/reactome/sparql">Reactome</a> for the pathways. 
@@ -23,6 +25,16 @@ This tool can help the researcher to retrieve the information through the federa
 <br>
 Once you submit the selected options along with the texts in the fields according to your query, the results will produce in the new page. The limit of the number of results is 11. From this many results, you can decide that the generated SPARQL query is enough for your problem or need modification. Modify the query if needed. And finally execute the query on <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a> SPARQL endpoint to produce more results. Look at <a href="http://www.ebi.ac.uk/rdf/faq/what-are-limitations-sparql-endpoints">limitation of ChEMBL SPARQL endpoint.</a>   
 </p>
+</div>
+<hr>
+
+
+<div id="better">
+<h2> <font color="green">Why is this tool better than using directly the ChEMBL end-point?</font> </h2>
+<br>
+This tool is more useful for the one who is not or less familiar with the triple store and a SPARQL query language. If you go to the ChEMBL SPARQL endpoint directly , besides the knowledge of the SPARQL query language, you would have to understand the schema of the triple store.
+If you go to understand the schema and learn the SPARQL, can take a long time where this tool can help you. Here, you have to select the options and write the text in the fields that anyone can do. If not the complete solution, part of the solution and bit modification can help to solve your query completely.       
+
 </div>
 <hr>
 
@@ -101,43 +113,43 @@ Once you submit the selected options along with the texts in the fields accordin
 <h2><font color="green">How to play this tool?</font></h2>
 <br>
 <p>
-The form has seven boxes to select the options along with fields to write text
+The form has seven boxes to select the options along with the fields to write the text.
 <br>
 <br>
-Different text colour in the form signifies information taken from respective triple store. 
+Different text colour in the form signifies that information has taken from the respective triple store. 
 <br>
-Black for ChEMBL 
+Black for the ChEMBL 
 <br>
-Blue for UniProt  
+Blue for the UniProt  
 <br>
-Red for Reactome  
-<br>
-<br>
-The form has multiple selection options over all boxes at a time. 
-Box: 1 options are interlinked, so if you are interested in finding all the targets corresponding to all the substances then you would have to select the intermediate options too, i.e. Activity and Assay.  
+Red for the Reactome  
 <br>
 <br>
-Apart from Box: 1, you have freedom to choose the options whatever you want. 
+The form has multiple selection options over all the boxes at a time. 
+Box: 1's options are interlinked. If you want to retrieve all the targets corresponding to all the substances then you would have to select the intermediate options too, i.e. Activity and Assay.  
+<br>
+<br>
+Apart from the first box, you have the freedom to choose the options whatever you want. 
 <br>
  <br>
- If you want to filter elements by writing inside fields then make sure you have selected the corresponding option too.
- For example, if you are interested in targeting  Homo Sapiens organism then beside writing organism name in field below organism, you would have to select the Organism option too.  
+ If you want to filter the results by writing the text in the fields then make sure you have selected the corresponding option too.
+ For example, if you are targeting the Homo Sapiens organism then beside writing the organism name in the field below the organism, you would have to select the Organism option too.  
 
 <br>
 <br>
-Fields are for filtering your results. In field name Published Date, Highest Development phase, Standard Value and TragetConfidence Score, write digit along with the operator (< or > or =). For example,  if you are interested in activity standard value less than 10 then in field Standard Value write ‘< 10’. In field Journal Name, Standard Unit, Assay Type and Organism, write the appropriate text. 
+The fields are for filtering your results. In the field of Published Date, Highest Development phase, Standard Value and TragetConfidence Score, write a digit along with the operator (< or > or =). For example, if you want the activity standard value less than 10 then in the field of Standard Value writes ‘< 10’. In the field of Journal Name, Standard Unit, Assay Type and Organism, write the appropriate text. 
 <br>
 <br>
-Reset button is there so you can reset the options if you need. 
+The Reset button is there so you can reset the options if you need. 
 <br>
 <br>
 <b>Example:</b>
 
-Retrieve the ChEMBl molecules targeting Mycobacterium organism, where activity standard unit contains 'nm', and activity standard value less than 10.
+Retrieve the ChEMBl molecules targeting Mycobacterium organism where activity standard unit contains 'nm' and activity standard value less than 10.
 <br>
 <br>
 
-<b>Way to solve it:</b> You would have to select the following options: Substance, Activity, Assay, Target, ChEMBL-id, Standard Value, Standard Unit and Organism, and then in field below Standard Unit write 'nm', below Standard value '<10' and below Organism 'mycobacterium'. 
+<b>Way to solve it:</b> You would have to select the following options: Substance, Activity, Assay, Target, ChEMBL-id, Standard Value, Standard Unit and Organism, and then in the field below Standard Unit, Standard value and organism write 'nm','<10' and 'mycobacterium' respectively. 
 <br>
 <a href="http://localhost:9001/ChEMBLQuery?details=%3Fmolecule+rdfs%3AsubClassOf+cco%3ASubstance.+%3Fmolecule+cco%3AhasActivity+%3Factivity.&details=%3Factivity+cco%3AhasAssay+%3Fassay.+%3Factivity+rdf%3Atype+cco%3AActivity.&details=%3Fassay+cco%3AhasTarget+%3Ftarget.+%3Fassay+rdf%3Atype+cco%3AAssay.&details=%3Ftarget+cco%3AhasTargetComponent+%3FtarComp+.+%3Ftarget+rdfs%3AsubClassOf+cco%3ATarget.+%3FtarComp+skos%3AexactMatch+%3Fprotein+.&details=%3Fmolecule+rdfs%3Alabel+%3FChEMBL_id.&details=%3Factivity+cco%3AstandardValue+%3FstdValue.&details=%3Factivity+cco%3AstandardUnits+%3FstdUnit.&unit=nm&value=%3C10&details=%3Ftarget+cco%3AorganismName+%3Forganism.&firstname=mycobacterium">See the results live</a>
 <br>
@@ -157,7 +169,7 @@ In the above snapshot, selected options have a gray colour background and the va
  <div id ="nullRes">
 <h2><font color="green">What if result is coming null?</font></h2> 
 <br>
-There are two reasons for getting null result.
+There are two reasons for the result null.
 <br>
 <br>
 1. Data is not present in the triple store for your query. 
