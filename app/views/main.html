@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-
+<!--
+This page uses the Bootstrap files through the links.
+-->
 <html>
     <head>
         <title>#{get 'title' /}</title>
@@ -15,7 +17,12 @@
          <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
          <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/styles.css'}">
          <link rel"stylesheet" href="https://gist.github.com/pseidemann/4458612">
+         
          <style>
+<!--  
+red and blue colour style has used to give the different colour to the text.       
+ -->   
+      
           .red {
 	             color: red;	             
               }
@@ -23,9 +30,11 @@
 	           color: blue;
 	           
               }
-              
-
-  
+        
+<!-- 
+Below style has used for hover the mouse position.
+ -->  
+ 
  $('[data-toggle="tooltip"]').tooltip({
     'placement': 'top'
 });
@@ -33,12 +42,14 @@ $('[data-toggle="popover"]').popover({
     trigger: 'hover',
         'placement': 'top'
         
-});
-
-  
-        </style>
-        
+});  
+        </style>       
     </head>
+    
+<!-- 
+Body part has mostly the Bootstrap functionality.
+ -->  
+   
     <body>
         <div class = "navbar navbar-inverse navbar-static-top">
          <div class = "container">

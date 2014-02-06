@@ -34,13 +34,21 @@ public class Application extends Controller {
 
 	public static void index() {
 		
-		home();
+		home(); //have call the method 
 	}
+/*
+ The methods which are not rendering anything have been designed to connect the controller and view.
+ */
 
-
-	public static void start(){
-		render();
-	}
+/*
+ The method which is interacting with database and view is ChEMBL. Once the user fill the form in view page and 
+ sends, the input comes inside the ChEMBL method. Input come as a part of SPARQL query so here the method first
+ give a proper shape. Proper shaped query runs on ChEMBL SPARQL endpoint through Jena library functions that 
+ retrieve the information. 
+ 
+ Before sending the results to the user, the ChEMBL method gives a proper shape to the results for a better visualization to user. 
+ 
+ */
 
 	public static String addFirst = "PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
 			"PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>\n" +
@@ -143,7 +151,9 @@ public class Application extends Controller {
 		String selection = "?protein ?recommended ?disease ?aa";
 		String addSelection =  new String();
 		String addSelection1 =  new String();
-		
+	/*
+	If clause mentioned below take care of input related to the ChEMBL and the Reactome SPARQL endpoints query part. 	
+	 */
 		if(details != null){
 			String selection1 = "?journalName ?date ?stdType ?stdValue ?stdRelation ?stdUnit ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?altLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ";
 		String[] finalSelection = selection1.split(" ");
@@ -180,7 +190,11 @@ public class Application extends Controller {
 
 		details = details.replaceAll(",", "");
 		}	
+
 		
+		/*
+		If clause mentioned below take care of input related to the UniProt SPARQL endpoint query part. 	
+		 */
 		if(uni != null){
 		String[] finalSelection1 = selection.split(" ");
 		String[] finalDetails1 = uni.split(" ");
@@ -271,19 +285,21 @@ public class Application extends Controller {
 				uniprotQuery+
 				"}\n"+
 				"LIMIT 11";}
-		//mixQuery = mixQuery.replaceAll(",", "");
+		
 
 		System.out.println(mixQuery);
 		
 		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", mixQuery);
 		ResultSet results = qExe.execSelect();
-		//String k = new String();
-
+		
+		/*
+		 for clause mentioned below take care of shaping the results. 	
+		 */
 		for ( ; results.hasNext() ; )
 		{
 
 			QuerySolution soln = results.nextSolution() ;
-			//soln.getLiteral("stdValue").getLexicalForm(); 
+			 
 			RDFNode x = soln.get("molecule") ; 
 			RDFNode y = soln.get("activity") ; 
 			RDFNode z = soln.get("assay") ; 
@@ -404,19 +420,31 @@ public class Application extends Controller {
 
 		}
 		qExe.close();
-
+		/*
+		finally sends the results to the view. 	
+		 */
 		render(myList,myList1,myList2,myList3,myList4,myList5,myList6,myList7,myList8,myList9,myList10,myList11,myList12,myList13,myList14,myList15,myList16,myList17,myList18,myList19,myList20,myList21,myList22,myList23,myList24,myList25, myList26, myList27, myList28, myList29, myList30);
 
 
 	}
+	
+	/*
+	SPARQLQuery method sends the generated SPARQL query to the view . 	
+	 */
+	
+	
 	public static void SPARQLQuery(){
 
 		String temp = mixQuery;
-		System.out.println(temp);
 		//renderTemplate("Application/SPARQLQuery.html", temp);
 		render(temp);
 	}
 
+	
+	public static void start(){
+		render();
+	}
+	
 	public static void contact() {
 		render();
 	}
