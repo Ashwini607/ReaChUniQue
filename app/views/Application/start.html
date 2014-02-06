@@ -1,7 +1,12 @@
 #{extends 'main.html' /}
 #{set title:'Start' /}
 
-
+<script type="text/javascript">
+function Confirm(form){
+alert("Your query is ready to execute on ChEMBL SPARQL endpoint. The results will be displayed after execution. Execution time will depend on the query.");
+form.submit();
+}
+</script>
 
 <p><font size="5" color="green"><b>Solve your query: first fill up the form given below and then submit</b></font></p> 
 <br>
@@ -9,6 +14,8 @@
 <p>To know more about how does this tool work, go to the <a href="http://localhost:9001/documentation">Documentation</a> page. You can see the <a href="http://localhost:9001/visualisation"> connections</a> among these all options.</p>
 
 <p>Different colour text in box retrieves information from respective triple store: black from <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a>, blue from <a href="http://beta.sparql.uniprot.org">UniProt</a> and red from <a href="http://www.ebi.ac.uk/rdf/services/reactome/sparql">Reactome</a>.</p> 
+
+<p>The tool uses <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL SPARQL endpoint</a> to execute your query, so it is worthy to look into <a href="http://www.ebi.ac.uk/rdf/faq/what-are-limitations-sparql-endpoints">SPARQL endpoint limitation</a>.  
 <hr>
 <form action="@{ChEMBL()}" method="GET" style="width:230px;">
 
@@ -112,7 +119,7 @@
  
 <br> 
 <br> 
-<input type="submit" style="background-color:#33FF99" value="Submit"><input type="reset" style="background-color:#FF6633">
+<input type="submit" style="background-color:#33FF99" value="Submit"  onClick="Confirm(this.form)"><input type="reset" style="background-color:#FF6633">
 
 </form>
 
