@@ -60,7 +60,7 @@ public class Application extends Controller {
 	public static void ChEMBL(String details, String firstname, String unit, String value, String journal, String date, String phase, String type, String score, String uni, String dis){
 		
 		String organism = new String();
-		String mixQuery = new String();
+		
 
 		if (firstname.length()>0){
 			organism = "FILTER regex(?organism,'" + firstname + "', 'i')";
@@ -274,6 +274,7 @@ public class Application extends Controller {
 		//mixQuery = mixQuery.replaceAll(",", "");
 
 		System.out.println(mixQuery);
+		
 		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", mixQuery);
 		ResultSet results = qExe.execSelect();
 		//String k = new String();
@@ -304,7 +305,7 @@ public class Application extends Controller {
 
 			RDFNode h = soln.get("ChEMBL_id") ; 
 			RDFNode i = soln.get("moleculeDesc") ; 
-			RDFNode j = soln.get("prefLabel") ; 
+			RDFNode j = soln.get("altLabel") ; 
 			RDFNode k1 = soln.get("highestDevelopmentPhase") ;
 			if(k1 != null){
 				String k = soln.getLiteral("highestDevelopmentPhase").getLexicalForm();

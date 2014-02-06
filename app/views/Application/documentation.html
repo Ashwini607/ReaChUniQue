@@ -11,6 +11,7 @@
  <li><a href="#tool"><h2> <font color="green" size ="5">What does this tool do?</font> </h2></a></li>
  <li> <a href="#desc"> <h2> <font color="green" size ="5"> Description of the terminology used in this tool.</font> </h2></a></li>
  <li> <a href="#work"><h2><font color="green" size ="5">How to play this tool?</font></h2> </a></li>
+  <li> <a href="#nullRes"><h2><font color="green" size ="5">What if result is coming null?</font></h2></a></li>
  <li> <a href="#analogy"> <h2><font color="green" size ="5">An analogy to understand this tool.</font></h2> </a></li>
 </div>
 <hr> 
@@ -143,13 +144,35 @@ Retrieve the ChEMBl molecules targeting Mycobacterium organism, where activity s
 <p><b>Snap-shot of the form</b></p> 
 <br>
 <img src="@{'/public/images/mycoBacFig3.png'}">
-</br>
+<br>
 In the above snapshot, selected options have a gray colour background and the values written in the fields. The field is a part of filtering the results. If you are accurate with your search, you would have to replace the variable name from the generated SPARQL query with the exact value (take care of case sensitivity). For example, here, we have searched the unit 'nm', therefore, it will extract the units containing 'nm', such as 'nM', 'nmol/min' etc. If you are interested in just 'nM' then replace the variable name '?stdUnit' with 'nM' (?activity cco:standardUnits 'nM'.). Now, remove the FILTER line. <a href="http://tinyurl.com/qacha6r"> See the results live </a>     
 <br>
 <br>
       
 <b>Note:</b> For the one who is trying the SPARQL query on the endpoint. Text inside field goes under FILTER construct of a SPARQL query that causes longer execution time. If you know the exact value to filter, from generated query remove the FILTER line and replace the variable name from remaining query. Now, execute the query on ChEMBL SPARQL endpoint. For example, if you want to search results which contains activity standard unit "nm" then in generated SPARQL query remove the FILTER line (?activity cco:standardUnit ?stdUnit) and replace the variable ?stdUnit from WHERE clause with ‘nM’. Remove the variable name from SELECT clause. After that executes it on <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL Sparql endpoint</a>. 
 </p>
+</div>
+<hr>
+ 
+ <div id ="nullRes">
+<h2><font color="green">What if result is coming null?</font></h2> 
+<br>
+There are two reasons for getting null result.
+<br>
+<br>
+1. Data is not present in the triple store for your query. 
+<br>
+<br>
+2. You have filled the form incorrectly. 
+<br>
+<br>
+There are three things to care during filling the form.
+<br>
+a. You have connected the sources of box 1 by selecting the in between options too. 
+<br>
+b. You have selected the option for the field to fill up. For example, to filter the results for the Mycobacterium organism beside writing text in the field, you would have to select the Organism option too.
+<br>
+c. You have used the operator (< or > or =) with a digit in filling the field (Published Date, Highest Development phase, Standard Value and TragetConfidence Score).       
 </div>
 <hr>
  
