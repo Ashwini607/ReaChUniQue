@@ -18,12 +18,18 @@ We are providing the snapshot of the form to solve the particular problem. Selec
 <img src="@{'/public/images/eg1.png'}">
 <br>
 <br> 
+<a href="http://localhost:9001/ChEMBLQuery?details=%3Fdocument+cco%3AhasJournal+%3Fjournal.+%3Fjournal+dcterms%3Atitle+%3FjournalName.&journal=&date=&phase=&value=&unit=&type=&score=&firstname=&dis="> See the results live </a>
+<br>
+<br>
 <b>EXAMPLE 2:</b> Finding the property's value can help you for filtering the results. For example, if you do not know the value of Assay Type property, then can search for that first and then in the next step you can use that value to filter the results. In case, you decided to find all the targets for all the substances having assay type "binding".  
 <br>
 <br>
 <b> Way to solve: </b>
 <br>  
 <img src="@{'/public/images/eg2.png'}">
+<br>
+<br>
+<a href="http://localhost:9001/ChEMBLQuery?details=%3Fmolecule+rdfs%3AsubClassOf+cco%3ASubstance.+%3Fmolecule+cco%3AhasActivity+%3Factivity.&details=%3Factivity+cco%3AhasAssay+%3Fassay.&details=%3Fassay+cco%3AhasTarget+%3Ftarget.&details=%3Ftarget+cco%3AhasTargetComponent+%3FtarComp.+%3FtarComp+skos%3AexactMatch+%3Fprotein+.&journal=&date=&details=%3Fmolecule+rdfs%3Alabel+%3FChEMBL_id.&phase=&value=&unit=&details=%3Fassay+cco%3AassayType+%3FassayType.&type=binding&score=&firstname=&dis=">See the results live</a>
 <br>
 <br>
 If you will do as I suggested to fill the form and submit. You will get the results and the generated SPARQL query. Now if you are interested in all the results related to binding assay type. <a href="http://tinyurl.com/p3u9xmj">See the modified query running on the ChEMBL SPARQL endpoint</a>.
@@ -39,6 +45,9 @@ If you will do as I suggested to fill the form and submit. You will get the resu
 <img src="@{'/public/images/eg3.png'}">
 <br>
 <br> 
+<a href="http://localhost:9001/ChEMBLQuery?details=%3Fmolecule+rdfs%3AsubClassOf+cco%3ASubstance.+%3Fmolecule+cco%3AhasActivity+%3Factivity.&details=%3Factivity+cco%3AhasAssay+%3Fassay.&details=%3Fassay+cco%3AhasTarget+%3Ftarget.&details=%3Ftarget+cco%3AhasTargetComponent+%3FtarComp.+%3FtarComp+skos%3AexactMatch+%3Fprotein+.&journal=&date=&details=%3Fmolecule+rdfs%3Alabel+%3FChEMBL_id.&phase=&value=&unit=&details=%3Fassay+cco%3AtargetConfScore+%3FtargetConfScore.&type=&score=%3E6&details=%3Ftarget+cco%3AorganismName+%3Forganism.&firstname=bacteria&dis=">See the results live</a>
+<br>
+<br> 
 
 <b>EXAMPLE 4:</b> Retrieve the approved drug for Mycobacterium target.
 <br>
@@ -48,6 +57,9 @@ If you will do as I suggested to fill the form and submit. You will get the resu
 <img src="@{'/public/images/eg4.png'}">
 <br>
 <br> 
+<a href ="http://localhost:9001/ChEMBLQuery?details=%3Fmolecule+rdfs%3AsubClassOf+cco%3ASubstance.+%3Fmolecule+cco%3AhasActivity+%3Factivity.&details=%3Factivity+cco%3AhasAssay+%3Fassay.&details=%3Fassay+cco%3AhasTarget+%3Ftarget.&details=%3Ftarget+cco%3AhasTargetComponent+%3FtarComp.+%3FtarComp+skos%3AexactMatch+%3Fprotein+.&journal=&date=&details=%3Fmolecule+rdfs%3Alabel+%3FChEMBL_id.&details=%3Fmolecule+cco%3AhighestDevelopmentPhase+%3FhighestDevelopmentPhase.&phase=%3D4&value=&unit=&type=&score=&details=%3Ftarget+cco%3AorganismName+%3Forganism.&firstname=mycobacterium&dis=">See the results live</a>
+<br>
+<br>
 
 <b>EXAMPLE 5:</b> Retrieve the compounds targeting bacteria having activity standard value less than 10 and standard unit 'nM'. If you search for it, then you will get a null result, because information is not available that you are looking. But if you will change the standard value filtering to greater than 10 then the results will be more.  
 <br>
@@ -57,6 +69,9 @@ If you will do as I suggested to fill the form and submit. You will get the resu
 <img src="@{'/public/images/eg5.png'}">
 <br>
 <br> 
+<a href ="http://localhost:9001/ChEMBLQuery?details=%3Fmolecule+rdfs%3AsubClassOf+cco%3ASubstance.+%3Fmolecule+cco%3AhasActivity+%3Factivity.&details=%3Factivity+cco%3AhasAssay+%3Fassay.&details=%3Fassay+cco%3AhasTarget+%3Ftarget.&details=%3Ftarget+cco%3AhasTargetComponent+%3FtarComp.+%3FtarComp+skos%3AexactMatch+%3Fprotein+.&journal=&date=&details=%3Fmolecule+rdfs%3Alabel+%3FChEMBL_id.&phase=&details=%3Factivity+cco%3AstandardValue+%3FstdValue.&details=%3Factivity+cco%3AstandardUnits+%3FstdUnit.&value=%3E10&unit=nm&type=&score=&details=%3Ftarget+cco%3AorganismName+%3Forganism.&firstname=bacteria&dis=">See the results live</a>
+<br>
+<br
 
 <b>EXAMPLE 6:</b> Retrieve the proteins and their sequence involved in Alzheimer disease.
 <br>
@@ -64,6 +79,10 @@ If you will do as I suggested to fill the form and submit. You will get the resu
 <b> Way to solve: </b>
 <br>  
 <img src="@{'/public/images/eg6.png'}">
+<br>
+<br
 
+<br>
+<br
 <hr> 
  You can find the very similar examples and their solution in my <a href="https://github.com/Ashwini607/ChEMBL-RDF-Queries">GitHub</a> repository.
