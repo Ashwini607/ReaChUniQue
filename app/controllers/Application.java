@@ -232,7 +232,7 @@ public class Application extends Controller {
 		}	
 		
 	String uniprotQuery = new String();
-	uniprotQuery = "SERVICE <http://beta.sparql.uniprot.org/sparql> {" +
+	uniprotQuery = "SERVICE SILENT <http://beta.sparql.uniprot.org/sparql> {" +
 	uni +
 	diss +
 	"}\n"

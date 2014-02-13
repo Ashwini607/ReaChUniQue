@@ -12,8 +12,9 @@
   <li> <a href="#better"> <h2> <font color="green" size ="5">Why is this tool better than using directly the ChEMBL endpoint?</font> </h2></a></li>
  <li> <a href="#desc"> <h2> <font color="green" size ="5"> Description of the terminology used in this tool.</font> </h2></a></li>
  <li> <a href="#work"><h2><font color="green" size ="5">Guide to use this tool.</font></h2> </a></li>
-  <li> <a href="#nullRes"><h2><font color="green" size ="5">What if result is coming null?</font></h2></a></li>
- <li> <a href="#analogy"> <h2><font color="green" size ="5">An analogy to understand this tool.</font></h2> </a></li>
+  <li> <a href="#nullRes"><h2><font color="green" size ="5">What if result is coming null or showing an error?</font></h2></a></li>
+  <li> <a href="#fed"><h2><font color="green" size ="5">What if federated query (retrieve data from more than one service. In this tool, services are ChEMBL, UniProt and Reactome.) has not results of all the services?</font></h2></a></li>
+  <li> <a href="#analogy"> <h2><font color="green" size ="5">An analogy for this tool.</font></h2> </a></li>
 </div>
 <hr> 
 <div id="tool">
@@ -23,7 +24,7 @@
 This tool can help the researcher to retrieve the information through the federated triple stores, and to understand the schema. Most of the information comes from <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a> triple store, a small drug like molecules store. Two other triple stores used are <a href="http://beta.sparql.uniprot.org">UniProt</a> for the proteins and their associated disease and <a href="http://www.ebi.ac.uk/rdf/services/reactome/sparql">Reactome</a> for the pathways. 
 <br>
 <br>
-This tool has a form which allows to select the options according to your query related to compounds and their target and then submit. After submission, it generates the background SPARQL query that runs on the ChEMBL SPARQL endpoint and provides the results along with the generated SPARQL query.
+This tool has a form. Fill the form according to your query related to compounds and their targets and then submit. After submission, it generates the background SPARQL query that runs on the ChEMBL SPARQL endpoint. Finally user gets the results along with the generated SPARQL query.
 <br>
 <br>
 Once you submit the selected options along with the texts in the fields according to your query, the results will produce in the new page. The limit of the number of results is 11. From this many results, you can decide that the generated SPARQL query is enough for your problem or need modification. Modify the query if needed. And finally execute the query on <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a> SPARQL endpoint to produce more results. Look at <a href="http://www.ebi.ac.uk/rdf/faq/what-are-limitations-sparql-endpoints">limitation of ChEMBL SPARQL endpoint.</a>   
@@ -140,7 +141,7 @@ Apart from the first box, you have the freedom to choose the options whatever yo
 
 <br>
 <br>
-The fields are for filtering your results. In the field of Published Date, Highest Development phase, Standard Value and TragetConfidence Score, write a digit along with the operator (< or > or =). For example, if you want the activity standard value less than 10 then in the field of Standard Value writes ‘< 10’. In the field of Journal Name, Standard Unit, Assay Type and Organism, write the appropriate text. 
+The fields filters the results. In the field of Published Date, Highest Development phase, Standard Value and TragetConfidence Score, write a digit along with the operator (< or > or =). For example, if you want the activity standard value less than 10 then in the field of Standard Value write ‘< 10’. In the field of Journal Name, Standard Unit, Assay Type and Organism, write the appropriate text. 
 <br>
 <br>
 The Reset button is there so you can reset the options if you need. 
@@ -160,25 +161,28 @@ Retrieve the ChEMBl molecules targeting Mycobacterium organism where activity st
 <br>
 <img src="@{'/public/images/mycoBacFig3.png'}">
 <br>
-In the above snapshot, selected options have a gray colour background and the values written in the fields. The field is a part of filtering the results. If you are accurate with your search, you would have to replace the variable name from the generated SPARQL query with the exact value (take care of case sensitivity). For example, here, we have searched the unit 'nm', therefore, it will extract the units containing 'nm', such as 'nM', 'nmol/min' etc. If you are interested in just 'nM' then replace the variable name '?stdUnit' with 'nM' (?activity cco:standardUnits 'nM'.). Now, remove the FILTER line. <a href="http://tinyurl.com/qacha6r"> See the results live </a>     
+In the above snapshot, selected options have a gray colour background and the values written in the fields. The field filters the results. If you are accurate with your search, replace the variable name from the generated SPARQL query with the exact value (take care of case sensitivity). For example, here, we have searched the unit 'nm', therefore, it will extract the units containing 'nm' such as 'nM', 'nmol/min' etc. If you are interested in just 'nM' then replace the variable name '?stdUnit' with 'nM' (?activity cco:standardUnits 'nM'.). Now remove the FILTER construct line of that variable and execute on the endpoint. <a href="http://tinyurl.com/qacha6r"> See the results live </a>     
 <br>
 <br>
       
-<b>Note:</b> For the one who is trying the SPARQL query on the endpoint. Text inside field goes under FILTER construct of a SPARQL query that causes longer execution time. If you know the exact value to filter, from generated query remove the FILTER line and replace the variable name from remaining query. Now, execute the query on ChEMBL SPARQL endpoint. For example, if you want to search results which contains activity standard unit "nm" then in generated SPARQL query remove the FILTER line (?activity cco:standardUnit ?stdUnit) and replace the variable ?stdUnit from WHERE clause with ‘nM’. Remove the variable name from SELECT clause. After that executes it on <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL Sparql endpoint</a>. 
+<b>Note:</b> For the one who is trying the SPARQL query on the endpoint. The text inside the field goes under the FILTER construct of a SPARQL query that causes longer execution time. If you know the exact value to filter, from the generated query remove the FILTER construct line and replace the variable name from the remaining query. Now executes the query on the ChEMBL SPARQL endpoint. For example, if you want to search the results which contain activity standard unit "nm" then from the generated SPARQL query remove the FILTER line (?activity cco:standardUnit ?stdUnit) and replace the variable ?stdUnit from the WHERE clause with ‘nM’. Remove the variable name from the SELECT clause. After that executes it on the <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL Sparql endpoint</a>. 
 </p>
 </div>
 <hr>
  
  <div id ="nullRes">
-<h2><font color="green">What if result is coming null?</font></h2> 
+<h2><font color="green">What if result is coming null or showing an error?</font></h2> 
 <br>
-There are two reasons for the result null.
+There are three reasons for the result null.
 <br>
 <br>
 1. Data is not present in the triple store for your query. 
 <br>
 <br>
-2. You have filled the form incorrectly. 
+2. SPARQL endpoint server is down. You can check this using execution of a given example on the respective endpoint.   
+<br>
+<br>
+3. You have filled the form incorrectly. 
 <br>
 <br>
 There are three things to care during filling the form.
@@ -190,9 +194,16 @@ b. You have selected the option for the field to fill up. For example, to filter
 c. You have used the operator (< or > or =) with a digit in filling the field (Published Date, Highest Development phase, Standard Value and TragetConfidence Score).       
 </div>
 <hr>
+
+<div id ="fed">
+<h2><font color="green">What if federated query (retrieve data from more than one service. In this tool, services are ChEMBL, UniProt and Reactome.) has not results of all the services?</font></h2> 
+<br>
+I have silenced the endpoint service if fails. So you will not get the results corresponding to the failed services. </div>
+<hr>
+
  
 <div id ="analogy">
-<h2><font color="green">An analogy to understand this tool.</font></h2> 
+<h2><font color="green">An analogy for this tool.</font></h2> 
 <br>
 Consider there is a tree having varieties of fruits, i.e. unripe to ripe and small to large. As we know, the choice to eat the same fruit varies w.r.t. the people according to the varieties. It is very difficult to find the choice of all the people. In case, someone wants to serve the fruits to the people according to their choice. The best idea would be given the tools to them. The tool will help the people to pluck the fruits of their own choice. Similarly, here we are unable to answer all the biological problems related to the triple stores, therefore, we have built a platform that could help the researcher to find the solution of their problem in a bit easier way.   
 </div>
