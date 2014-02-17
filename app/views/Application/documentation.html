@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Documentation' /}
+#{set title:'ReaChUniQue: Documentation' /}
 
 <div class = "container"  height =50%>
                
@@ -155,7 +155,7 @@ Retrieve the ChEMBl molecules targeting Mycobacterium organism where activity st
 
 <b>Way to solve it:</b> You would have to select the following options: Substance, Activity, Assay, Target, ChEMBL-id, Standard Value, Standard Unit and Organism, and then in the field below Standard Unit, Standard value and organism write 'nm','<10' and 'mycobacterium' respectively. 
 <br>
-<a href="http://localhost:9001/ChEMBLQuery?details=%3Fmolecule+rdfs%3AsubClassOf+cco%3ASubstance.+%3Fmolecule+cco%3AhasActivity+%3Factivity.&details=%3Factivity+cco%3AhasAssay+%3Fassay.+%3Factivity+rdf%3Atype+cco%3AActivity.&details=%3Fassay+cco%3AhasTarget+%3Ftarget.+%3Fassay+rdf%3Atype+cco%3AAssay.&details=%3Ftarget+cco%3AhasTargetComponent+%3FtarComp+.+%3Ftarget+rdfs%3AsubClassOf+cco%3ATarget.+%3FtarComp+skos%3AexactMatch+%3Fprotein+.&details=%3Fmolecule+rdfs%3Alabel+%3FChEMBL_id.&details=%3Factivity+cco%3AstandardValue+%3FstdValue.&details=%3Factivity+cco%3AstandardUnits+%3FstdUnit.&unit=nm&value=%3C10&details=%3Ftarget+cco%3AorganismName+%3Forganism.&firstname=mycobacterium">See the results live</a>
+<a href="/ChEMBLQuery?details=%3Fmolecule+rdfs%3AsubClassOf+cco%3ASubstance.+%3Fmolecule+cco%3AhasActivity+%3Factivity.&details=%3Factivity+cco%3AhasAssay+%3Fassay.&details=%3Fassay+cco%3AhasTarget+%3Ftarget.&details=%3Ftarget+cco%3AhasTargetComponent+%3FtarComp.+%3FtarComp+skos%3AexactMatch+%3Fprotein+.&journal=&date=&details=%3Fmolecule+rdfs%3Alabel+%3FChEMBL_id.&phase=&details=%3Factivity+cco%3AstandardValue+%3FstdValue.&details=%3Factivity+cco%3AstandardUnits+%3FstdUnit.&value=%3C10&unit=nm&type=&score=&details=%3Ftarget+cco%3AorganismName+%3Forganism.&firstname=mycobacterium&dis=">See the results live</a>
 <br>
 <p><b>Snap-shot of the form</b></p> 
 <br>
@@ -173,21 +173,24 @@ In the above snapshot, selected options have a gray colour background and the va
  <div id ="nullRes">
 <h2><font color="green">What if result is coming null or showing an error?</font></h2> 
 <br>
-There are three reasons for the result null.
+What if result is null?
 <br>
 <br>
-1. Data is not present in the triple store for your query. 
+Sol: Data is not present in the triple store for your query. 
 <br>
 <br>
-2. SPARQL endpoint server is down. You can check this using execution of a given example on the respective endpoint.   
+There are two reasons for an error.
 <br>
 <br>
-3. You have filled the form incorrectly. 
+1. ChEMBL SPARQL endpoint server is down. You can check this using execution of a given example on the <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql"> ChEMBL endpoint</a>.   
+<br>
+<br>
+2. You have filled the form incorrectly. 
 <br>
 <br>
 There are three things to care during filling the form.
 <br>
-a. You have connected the sources of box 1 by selecting the in between options too. 
+a. You have connected the sources of box 1 by selecting the in between options of your interest. I mean if you are interested in retrieve all the targets corresponding to all the substances then you would have to select the intermediate options too, i.e. Activity and Assay.  
 <br>
 b. You have selected the option for the field to fill up. For example, to filter the results for the Mycobacterium organism beside writing text in the field, you would have to select the Organism option too.
 <br>

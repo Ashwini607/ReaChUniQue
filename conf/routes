@@ -5,14 +5,14 @@
 # Home page
 GET     /                                       Application.index
 
-GET    /start                                   Application.start
+GET   /start                                   Application.start
 GET   /ChEMBLQuery                              Application.ChEMBL
 GET   /SPARQLQuery                              Application.SPARQLQuery
 GET /contact                                    Application.contact
 GET /documentation                              Application.documentation
 GET /visualisation                              Application.visualisation
 GET /home                                       Application.home
-GET /example                                    Application.example
+GET /examples                                    Application.examples
 
 
 # Ignore favicon requests

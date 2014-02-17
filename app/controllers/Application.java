@@ -420,6 +420,8 @@ public class Application extends Controller {
 
 		}
 		qExe.close();
+		
+		
 		/*
 		finally sends the results to the view. 	
 		 */
@@ -461,7 +463,7 @@ public class Application extends Controller {
 		render();		
 	}
 	
-	public static void example() {
+	public static void examples() {
 		render();		
 	}
 	
