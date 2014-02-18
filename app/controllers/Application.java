@@ -155,7 +155,7 @@ public class Application extends Controller {
 	If clause mentioned below take care of input related to the ChEMBL and the Reactome SPARQL endpoints query part. 	
 	 */
 		if(details != null){
-			String selection1 = "?journalName ?date ?stdType ?stdValue ?stdRelation ?stdUnit ?annotation ?pathwayname ?ChEMBL_id ?moleculeDesc ?altLabel ?highestDevelopmentPhase ?substanceType ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ";
+			String selection1 = "?journalName ?date  ?ChEMBL_id ?moleculeDesc ?altLabel ?highestDevelopmentPhase ?substanceType ?stdType ?stdRelation ?stdValue ?stdUnit ?assayLabel ?assayDesc ?assayType ?targetConfDesc ?targetConfScore ?targetRelType ?targetRelDesc ?targetLabel ?targetTitle ?targetType ?organism ?pathwayname";
 		String[] finalSelection = selection1.split(" ");
 		String[] finalDetails = details.split(" ");
 
