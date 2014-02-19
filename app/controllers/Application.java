@@ -65,10 +65,18 @@ public class Application extends Controller {
 	public static String mixQuery;
  
 
-	public static void ChEMBL(String details, String firstname, String unit, String value, String journal, String date, String phase, String type, String score, String uni, String dis){
+	public static void ChEMBL(String details, String firstname, String unit, String value, String journal, String date, String phase, String type, String score, String uni, String dis, String rec){
+
+		String reactome = new String();	
+		String path = new String();	
+
+		if (rec != null){
+			reactome = rec;
+			path = "?pathwayname";
+		}
+			
 		
-		String organism = new String();
-		
+		String organism = new String();		
 
 		if (firstname.length()>0){
 			organism = "FILTER regex(?organism,'" + firstname + "', 'i')";
@@ -232,27 +240,48 @@ public class Application extends Controller {
 		}	
 		
 	String uniprotQuery = new String();
-	uniprotQuery = "SERVICE SILENT <http://beta.sparql.uniprot.org/sparql> {" +
+	uniprotQuery = "SERVICE SILENT <http://beta.sparql.uniprot.org/sparql> { " +
 	uni +
 	diss +
 	"}\n"
 	      ;
-			
+	
+	
+	if(rec !=null && details==null && uni==null ){	
+		mixQuery = addFirst + "SELECT DISTINCT "+
+				path +
+				" WHERE { \n" +	
+				reactome +
+				"}\n"+
+				"LIMIT 11";}
+	
 		
-	if(details==null){	
-		mixQuery = addFirst + "SELECT DISTINCT"+
+	if(details==null && rec ==null && uni !=null){	
+		mixQuery = addFirst + "SELECT DISTINCT "+
 				addSelection +
 				addSelection1 +
+				path +
 				" WHERE { \n" +			    
 				uniprotQuery +
 				"}\n"+
 				"LIMIT 11";}
 	
-	
-	if(uni==null){	
-		mixQuery = addFirst + "SELECT DISTINCT"+
+	if(details==null && rec !=null && uni !=null){	
+		mixQuery = addFirst + "SELECT DISTINCT "+
 				addSelection +
 				addSelection1 +
+				path +
+				" WHERE { \n" +			    
+				uniprotQuery +
+				reactome +
+				"}\n"+
+				"LIMIT 11";}
+	
+	if(details!=null && rec !=null && uni==null){	
+		mixQuery = addFirst + "SELECT DISTINCT "+
+				addSelection +
+				addSelection1 +
+				path +
 				" WHERE { \n" +		
 				details +
 				organism +	
@@ -263,15 +292,33 @@ public class Application extends Controller {
 				phases +
 				types +
 				scores +
-				
+				reactome +
+				"}\n"+
+				"LIMIT 11";}
+
+	if(details!=null && rec ==null && uni==null){	
+		mixQuery = addFirst + "SELECT DISTINCT "+
+				addSelection +
+				addSelection1 +
+				path +
+				" WHERE { \n" +		
+				details +
+				organism +	
+				units +
+				values +
+				journals +
+				dates +
+				phases +
+				types +
+				scores +
 				"}\n"+
 				"LIMIT 11";}
 	
-	
-	if(uni!=null && details!=null){	
-		mixQuery = addFirst + "SELECT DISTINCT"+
+	if(uni!=null && details!=null && rec !=null){	
+		mixQuery = addFirst + "SELECT DISTINCT "+
 				addSelection +
 				addSelection1 +
+				" "+ path +
 				" WHERE { \n" +		
 				details +
 				organism +	
@@ -283,6 +330,7 @@ public class Application extends Controller {
 				types +
 				scores +
 				uniprotQuery+
+				reactome +
 				"}\n"+
 				"LIMIT 11";}
 		

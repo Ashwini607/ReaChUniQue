@@ -6,6 +6,10 @@ function Confirm(form){
 alert("Your query is ready to execute on ChEMBL SPARQL endpoint. The results will be displayed after execution. Execution time will depend on the query.");
 form.submit();
 }
+select {
+    height:36px;
+    font-size:14px;
+}
 </script>
 
 <!--
@@ -39,23 +43,20 @@ Information comes from filling the form.
 
 <p id="tool" class="muted" style="margin-bottom: 0;"><a href="#" data-toggle="tooltip" title="Options inside this box help to link the sources. Select all the options in between your interest, i.e. if you are interested in finding the substance and their target then select the “Assay” and  “Activity” options too.  Then after, select options from respective properties of the source."><b> Box 1 <span class="glyphicon glyphicon-question-sign"></span></b></a> <b>:Main Sources </b></p>
 
-  <select name="details" multiple size=6 style="width: 230px">
+  <select name="details" multiple size=5 style="width: 230px">
   <option value='?molecule cco:hasDocument ?document. ?document rdf:type cco:Document.'> Document</option> 
   <option value='?molecule rdfs:subClassOf cco:Substance. ?molecule cco:hasActivity ?activity.'> Substance </option> 
   <option value="?activity cco:hasAssay ?assay."> Activity</option> 
   <option value="?assay cco:hasTarget ?target.">Assay</option>   
   <option value="?target cco:hasTargetComponent ?tarComp. ?tarComp skos:exactMatch ?protein .">Target</option>
+  </select>
+  <select name="rec" size =2 style="width: 230px">
   <option class="red" value="SERVICE SILENT <http://www.ebi.ac.uk/rdf/services/reactome/sparql> {
-  ?dbXref rdf:type biopax3:Protein .
-  ?dbXref biopax3:memberPhysicalEntity [biopax3:entityReference ?protein  ] .
-  ?pathway biopax3:displayName ?pathwayname .
-  ?pathway biopax3:pathwayComponent ?reaction .
-  ?reaction ?rel ?dbXref.
-  }"> Pathway</option>
+  ?dbXref rdf:type biopax3:Protein. ?dbXref biopax3:memberPhysicalEntity [biopax3:entityReference ?protein]. ?pathway biopax3:displayName ?pathwayname. ?pathway biopax3:pathwayComponent ?reaction. ?reaction ?rel ?dbXref.}"> Pathway</option>
    </select>
 
 
-<select name="uni" multiple style="width: 230px">
+<select name="uni" size =2 style="width: 230px">
   <option class="blue" value="?protein a up:Protein. ?protein up:recommendedName ?recommended."> Protein</option>
 </select>
  <br>

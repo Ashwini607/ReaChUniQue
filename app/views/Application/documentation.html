@@ -8,13 +8,13 @@
                         </div>              
  </div>
  <div>
- <li><a href="#tool"><h2> <font color="green" size ="5">What does this tool do?</font> </h2></a></li>
-  <li> <a href="#better"> <h2> <font color="green" size ="5">Why is this tool better than using directly the ChEMBL endpoint?</font> </h2></a></li>
- <li> <a href="#desc"> <h2> <font color="green" size ="5"> Description of the terminology used in this tool.</font> </h2></a></li>
- <li> <a href="#work"><h2><font color="green" size ="5">Guide to use this tool.</font></h2> </a></li>
-  <li> <a href="#nullRes"><h2><font color="green" size ="5">What if result is coming null or showing an error?</font></h2></a></li>
-  <li> <a href="#fed"><h2><font color="green" size ="5">What if federated query (retrieve data from more than one service. In this tool, services are ChEMBL, UniProt and Reactome.) has not results of all the services?</font></h2></a></li>
-  <li> <a href="#analogy"> <h2><font color="green" size ="5">An analogy for this tool.</font></h2> </a></li>
+ <li> <a href="#tool"> <b><font color="green" size ="5">What does this tool do?</font></a></li>
+  <li> <a href="#better"> <font color="green" size ="5">Why is this tool better than using directly the ChEMBL endpoint?</font></a></li>
+ <li> <a href="#desc"> <font color="green" size ="5"> Description of the terminology used in this tool.</font></a></li>
+ <li> <a href="#work"><font color="green" size ="5">Guide to use this tool.</font></a></li>
+  <li> <a href="#nullRes"><font color="green" size ="5">What if result is coming null or showing an error?</font></a></li>
+  <li> <a href="#fed"><font color="green" size ="5">What if federated query (retrieve data from more than one service. In this tool, services are ChEMBL, UniProt and Reactome.) has not results of all the services?</font></a></li>
+  <li> <a href="#analogy"><font color="green" size ="5">An analogy for this tool.</font></a></b></li>
 </div>
 <hr> 
 <div id="tool">
@@ -24,7 +24,7 @@
 This tool can help the researcher to retrieve the information through the federated triple stores, and to understand the schema. Most of the information comes from <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a> triple store, a small drug like molecules store. Two other triple stores used are <a href="http://beta.sparql.uniprot.org">UniProt</a> for the proteins and their associated disease and <a href="http://www.ebi.ac.uk/rdf/services/reactome/sparql">Reactome</a> for the pathways. 
 <br>
 <br>
-This tool has a form. Fill the form according to your query related to compounds and their targets and then submit. After submission, it generates the background SPARQL query that runs on the ChEMBL SPARQL endpoint. Finally user gets the results along with the generated SPARQL query.
+This tool has a form. Fill the form according to your query related to compounds and their targets and then submit. After submission, it generates the background SPARQL query that runs on the ChEMBL SPARQL endpoint. Finally user gets the results along with the generated SPARQL query. There is a link in the query generated page that will make the query running directly on ChEMBL SPARQL endpoint.   
 <br>
 <br>
 Once you submit the selected options along with the texts in the fields according to your query, the results will produce in the new page. The limit of the number of results is 11. From this many results, you can decide that the generated SPARQL query is enough for your problem or need modification. Modify the query if needed. And finally execute the query on <a href="http://www.ebi.ac.uk/rdf/services/chembl/sparql">ChEMBL</a> SPARQL endpoint to produce more results. Look at <a href="http://www.ebi.ac.uk/rdf/faq/what-are-limitations-sparql-endpoints">limitation of ChEMBL SPARQL endpoint.</a>   

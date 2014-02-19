@@ -4,13 +4,16 @@
 <p><font size="5" color="green"><b>SPARQL query</b></font></p>
 <hr>
 %{
+name = temp.replace(':<', ':&lt;');
 name = temp.replace('<', '&lt;');
 name = name.replace("PREFIX", "<br>PREFIX");
 name = name.replace("SELECT", "<br><br> SELECT");
 name = name.replace("WHERE", "<br> WHERE");
+name = name.replace("SERVICE", "<br> <br>SERVICE");
 name = name.replace("LIMIT", "<br> LIMIT");
 name = name.replace(":>", ":<");
 name = name.replace(". ?", ".<br> ?");
+name = name.replace("{", "{<br>");
 out.print(name); 
 
 String query = "www.ebi.ac.uk/rdf/services/chembl/sparql?query=" +name;
@@ -19,11 +22,13 @@ encodedUrl = encodedUrl.replaceAll("%3Cbr%3E+" , "");
 encodedUrl = encodedUrl.replaceAll("%3A%26lt%3B" , "%3A%3C");
 encodedUrl = encodedUrl.replaceAll("www.ebi.ac.uk%2Frdf%2Fservices%2Fchembl%2Fsparql%3Fquery%3D" , "http://www.ebi.ac.uk/rdf/services/chembl/sparql?query=");
 encodedUrl = encodedUrl.replaceAll("\\." +"\\+" + "%3" , ".%0D%0A%3");
-
-
-System.out.println("Encoded URL " + encodedUrl);
+encodedUrl = encodedUrl.replaceAll("\\+" + "\\+", "\\+" + "%0D%0A");
+encodedUrl = encodedUrl.replaceAll("%2F%3E"+ "\\+" +"%0A" + "\\+" , "%2F%3E" + "\\+" + "%0D%0A%0D%0A");
+encodedUrl = encodedUrl.replaceAll("%26lt%3B", "%3C");
 
  }%
  <hr>
+ 
+ 
  <p><font color="green" size ="5">Now you can run this query on ChEMBL SPARQL endpoint directly. If result is not complete, modify the query and run.</font></p>
  <a href = ${encodedUrl}> Click here</a>
