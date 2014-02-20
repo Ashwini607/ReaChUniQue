@@ -335,7 +335,7 @@ public class Application extends Controller {
 				"LIMIT 11";}
 		
 
-		System.out.println(mixQuery);
+		//System.out.println(mixQuery);
 		
 		QueryExecution qExe = QueryExecutionFactory.sparqlService("http://www.ebi.ac.uk/rdf/services/chembl/sparql", mixQuery);
 		ResultSet results = qExe.execSelect();
